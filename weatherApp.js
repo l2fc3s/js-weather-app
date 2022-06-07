@@ -3,11 +3,27 @@ window.addEventListener("load", () => {
   let longitude;
   const apiKey = "eee3276fd98cb728fa9c4303282c4b36";
   let weatherCity = document.getElementById("weatherHeader");
-  let weatherInfo = document.getElementById("weatherCondition");
+  let weatherCountry = document.getElementById("weatherHeaderCountry");
+  let weatherInfo = document.getElementById("weatherDescription");
   let currentTemp = document.getElementById("weatherTemp");
   let tempHigh = document.getElementById("weatherHigh");
   let lowTemp = document.getElementById("weatherLow");
   let apiLoader = document.getElementById("apiLoader");
+  let weatherConditionDisplay = document.getElementById("weatherCondition");
+
+  function showApiLoader(bool) {
+    if (bool) {
+      apiLoader.style.display = "block";
+    } else {
+      apiLoader.style.display = "none";
+    }
+  }
+
+  function displayWeatherCondition(bool) {
+    bool
+      ? (weatherConditionDisplay.style.display = "flex")
+      : (weatherConditionDisplay.style.display = "none");
+  }
 
   const success = (pos) => {
     latitude = pos.coords.latitude;
@@ -19,7 +35,8 @@ window.addEventListener("load", () => {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, errFunction);
-    apiLoader.style.display = "block";
+    showApiLoader(true);
+    displayWeatherCondition(false);
   }
 
   function errFunction() {
@@ -33,8 +50,10 @@ window.addEventListener("load", () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        apiLoader.style.display = "none";
+        showApiLoader(false);
+        displayWeatherCondition(true);
 
+        weatherCountry.innerHTML = `, ${data.sys.country}`;
         weatherCity.innerHTML = `${data.name}`;
         weatherInfo.innerHTML = `${data.weather[0].main}`;
         currentTemp.innerHTML = `${Math.round(data.main.temp)}`;
