@@ -10,6 +10,7 @@ window.addEventListener("load", () => {
   let lowTemp = document.getElementById("weatherLow");
   let apiLoader = document.getElementById("apiLoader");
   let weatherConditionDisplay = document.getElementById("weatherCondition");
+  let weatherIcon = document.getElementById("weatherIconContainer");
 
   function showApiLoader(bool) {
     if (bool) {
@@ -41,6 +42,8 @@ window.addEventListener("load", () => {
 
   function errFunction() {
     alert("Geocoder failed");
+    showApiLoader(false);
+    displayWeatherCondition(true);
   }
 
   function fetchWeather() {
@@ -56,9 +59,10 @@ window.addEventListener("load", () => {
         weatherCountry.innerHTML = `, ${data.sys.country}`;
         weatherCity.innerHTML = `${data.name}`;
         weatherInfo.innerHTML = `${data.weather[0].main}`;
-        currentTemp.innerHTML = `${Math.round(data.main.temp)}`;
-        tempHigh.innerHTML = `${Math.round(data.main.temp_max)} /`;
-        lowTemp.innerHTML = ` ${Math.round(data.main.temp_min)}`;
+        weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/${data.weather[0].icon}.png" alt="weather image"> `;
+        currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
+        tempHigh.innerHTML = `${Math.round(data.main.temp_max)}&deg; /`;
+        lowTemp.innerHTML = ` ${Math.round(data.main.temp_min)}&deg;`;
       });
   }
 });

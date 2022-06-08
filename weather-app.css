@@ -76,3 +76,16 @@ body {
 .high-low-temp {
   display: inline-block;
 }
+
+.weather-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 18%;
+  width: 100%;
+}
+
+.weather-icon {
+  height: 100%;
+  width: auto;
+}
