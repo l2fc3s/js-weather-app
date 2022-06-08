@@ -3,6 +3,11 @@ body {
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(to bottom left, #edfdff, #fffefe);
 }
 
 .weather-container {

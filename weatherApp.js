@@ -1,3 +1,30 @@
+let bgColorObject = {
+  "01d": "to bottom left, #d4fdff, #ffffff",
+  "01n": "to bottom left, #413074, #cccbcb",
+  "02d": "to bottom left, #ddecec, #ffffff",
+  "02n": "to bottom left, #726b8a, #949494",
+  "03d": "to bottom left, #cecece, #ffffff",
+  "03n": "to bottom left, #646075, #d3d3d3",
+  "04d": "to bottom left, #dde5e6, #ffffff",
+  "04n": "to bottom left, #63626d, #d3d3d3",
+  "09d": "to bottom left, #b7c9cc, #ffffff",
+  "09n": "to bottom left, #4d4a5c, #585858",
+  "10d": "to bottom left, #9da7a8, #ffffff",
+  "10n": "to bottom left, #474552, #3b3b3b",
+  "11d": "to bottom left, #777676, #afaeae",
+  "11n": "to bottom left, #363347, #2b2a2a",
+  "13d": "to bottom left, #ececec, #cecece",
+  "13n": "to bottom left, #5c5869, #d3d3d3",
+  "50d": "to bottom left, #ececec, #dddddd",
+  "50n": "to bottom left, #575764, #7c7c7c",
+};
+
+const changeBackgroundColor = (data) => {
+  document.body.style.background = `linear-gradient(${
+    bgColorObject[data.weather[0].icon]
+  })`;
+};
+
 window.addEventListener("load", () => {
   let latitude;
   let longitude;
@@ -13,11 +40,9 @@ window.addEventListener("load", () => {
   let weatherIcon = document.getElementById("weatherIconContainer");
 
   function showApiLoader(bool) {
-    if (bool) {
-      apiLoader.style.display = "block";
-    } else {
-      apiLoader.style.display = "none";
-    }
+    bool
+      ? (apiLoader.style.display = "block")
+      : (apiLoader.style.display = "none");
   }
 
   function displayWeatherCondition(bool) {
@@ -55,6 +80,8 @@ window.addEventListener("load", () => {
         console.log(data);
         showApiLoader(false);
         displayWeatherCondition(true);
+
+        changeBackgroundColor(data);
 
         weatherCountry.innerHTML = `, ${data.sys.country}`;
         weatherCity.innerHTML = `${data.name}`;
