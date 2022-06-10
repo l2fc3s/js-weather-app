@@ -4,13 +4,19 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
+  color: #fff;
 }
 
 body {
-  background: linear-gradient(to bottom left, #edfdff, #fffefe);
+  background: url(./background-images/01d.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(30px);
 }
 
 .weather-container {
+  height: 100vh;
+  width: 100%;
 }
 
 .weather-city {
@@ -60,7 +66,7 @@ body {
 }
 
 .weather-condition {
-  height: 500px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,9 +74,10 @@ body {
 }
 
 .weather-temp {
-  font-size: 120px;
+  font-size: 20vw;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 
 .weather-condition {
@@ -83,14 +90,20 @@ body {
 }
 
 .weather-icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 18%;
-  width: 100%;
+  width: 40%;
 }
 
 .weather-icon {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
+}
+
+.weather-description {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.high-low-temp {
+  font-size: 18px;
+  font-weight: 600;
 }

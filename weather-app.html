@@ -10,23 +10,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="weather-container">
-      <div class="weather-city">
-        <p class="weather-header" id="weatherHeader">
-          <!-- city name here -->
-        </p>
-        <p id="weatherHeaderCountry">&nbsp;</p>
-      </div>
+    <div class="weather-city">
+      <p class="weather-header" id="weatherHeader">
+        <!-- city name here -->
+      </p>
+      <p id="weatherHeaderCountry">&nbsp;</p>
+    </div>
 
+    <div class="weather-container">
       <div id="apiLoader" class="loading-display-container">
         <div class="loading-container">
           <div class="loader"></div>
-          <p><em>Loading...</em></p>
         </div>
       </div>
 
@@ -35,6 +34,7 @@
           <!-- img icon here -->
         </div>
         <p class="weather-temp" id="weatherTemp">0&deg;</p>
+
         <p class="weather-description" id="weatherDescription">
           <!-- weather condition here -->
         </p>

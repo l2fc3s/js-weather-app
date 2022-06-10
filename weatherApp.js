@@ -19,10 +19,10 @@ let bgColorObject = {
   "50n": "to bottom left, #575764, #7c7c7c",
 };
 
-const changeBackgroundColor = (data) => {
-  document.body.style.background = `linear-gradient(${
-    bgColorObject[data.weather[0].icon]
-  })`;
+const changeBackgroundImage = (data) => {
+  document.body.style.background = `url(./background-images/${data.weather[0].icon}.jpg)`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundRepeat = "no-repeat";
 };
 
 window.addEventListener("load", () => {
@@ -81,15 +81,19 @@ window.addEventListener("load", () => {
         showApiLoader(false);
         displayWeatherCondition(true);
 
-        changeBackgroundColor(data);
+        changeBackgroundImage(data);
 
         weatherCountry.innerHTML = `, ${data.sys.country}`;
         weatherCity.innerHTML = `${data.name}`;
         weatherInfo.innerHTML = `${data.weather[0].main}`;
-        weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/${data.weather[0].icon}.png" alt="weather image"> `;
+        weatherIcon.innerHTML = `<img class='weather-icon' src="./weather-icons/${data.weather[0].icon}.png" alt="weather image"> `;
         currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
-        tempHigh.innerHTML = `${Math.round(data.main.temp_max)}&deg; /`;
-        lowTemp.innerHTML = ` ${Math.round(data.main.temp_min)}&deg;`;
+        tempHigh.innerHTML = `H ${Math.round(data.main.temp_max)}&deg; /`;
+        lowTemp.innerHTML = ` L ${Math.round(data.main.temp_min)}&deg;`;
+
+        // Test cases
+        // weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/02d.png" alt="weather image"> `;
+        // document.body.style.background = `linear-gradient(${bgColorObject["02d"]})`;
       });
   }
 });
