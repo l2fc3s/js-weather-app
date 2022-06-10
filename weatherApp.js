@@ -88,8 +88,8 @@ window.addEventListener("load", () => {
         weatherInfo.innerHTML = `${data.weather[0].main}`;
         weatherIcon.innerHTML = `<img class='weather-icon' src="./weather-icons/${data.weather[0].icon}.png" alt="weather image"> `;
         currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
-        tempHigh.innerHTML = `H ${Math.round(data.main.temp_max)}&deg; /`;
-        lowTemp.innerHTML = ` L ${Math.round(data.main.temp_min)}&deg;`;
+        tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
+        lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
 
         // Test cases
         // weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/02d.png" alt="weather image"> `;

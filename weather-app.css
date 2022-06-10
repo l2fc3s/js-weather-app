@@ -35,6 +35,10 @@ body {
   font-weight: 700;
 }
 
+#weatherHeaderCountry {
+  font-weight: 600;
+}
+
 .loading-display-container {
   display: none;
 }
@@ -73,13 +77,6 @@ body {
   align-items: center;
 }
 
-.weather-temp {
-  font-size: 20vw;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
 .weather-condition {
   margin: 0;
   padding: 0;
@@ -91,6 +88,9 @@ body {
 
 .weather-icon-container {
   width: 40%;
+  max-width: 425px;
+  min-width: 250px;
+  margin-bottom: -40px;
 }
 
 .weather-icon {
@@ -98,12 +98,25 @@ body {
   width: 100%;
 }
 
+.weather-temp {
+  /* font-size: 20vw; */
+  font-size: clamp(150px, 20vw, 250px);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 .weather-description {
   font-size: 18px;
   font-weight: 700;
 }
 
+.high-low-container {
+  padding: 0;
+  margin: -20px;
+}
+
 .high-low-temp {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
