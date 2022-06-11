@@ -62,13 +62,11 @@ window.addEventListener("load", () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, errFunction);
     showApiLoader(true);
-    displayWeatherCondition(false);
   }
 
   function errFunction() {
     alert("Geocoder failed");
     showApiLoader(false);
-    displayWeatherCondition(true);
   }
 
   function fetchWeather() {
@@ -78,8 +76,6 @@ window.addEventListener("load", () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        showApiLoader(false);
-        displayWeatherCondition(true);
 
         changeBackgroundImage(data);
 
