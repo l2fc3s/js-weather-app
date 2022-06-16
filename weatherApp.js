@@ -25,20 +25,46 @@ const changeBackgroundImage = (data) => {
   document.body.style.backgroundRepeat = "no-repeat";
 };
 
-window.addEventListener("load", () => {
-  let latitude;
-  let longitude;
-  const apiKey = "eee3276fd98cb728fa9c4303282c4b36";
-  let weatherCity = document.getElementById("weatherHeader");
-  let weatherCountry = document.getElementById("weatherHeaderCountry");
-  let weatherInfo = document.getElementById("weatherDescription");
-  let currentTemp = document.getElementById("weatherTemp");
-  let tempHigh = document.getElementById("weatherHigh");
-  let lowTemp = document.getElementById("weatherLow");
-  let apiLoader = document.getElementById("apiLoader");
-  let weatherConditionDisplay = document.getElementById("weatherCondition");
-  let weatherIcon = document.getElementById("weatherIconContainer");
+const months = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  10: "October",
+  11: "November",
+  12: "December",
+};
 
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+let latitude;
+let longitude;
+const apiKey = "eee3276fd98cb728fa9c4303282c4b36";
+let weatherCity = document.getElementById("weatherHeader");
+let weatherCountry = document.getElementById("weatherHeaderCountry");
+let weatherInfo = document.getElementById("weatherDescription");
+let currentTemp = document.getElementById("weatherTemp");
+let tempHigh = document.getElementById("weatherHigh");
+let lowTemp = document.getElementById("weatherLow");
+let apiLoader = document.getElementById("apiLoader");
+let weatherConditionDisplay = document.getElementById("weatherCondition");
+let weatherIcon = document.getElementById("weatherIconContainer");
+let forecast = document.getElementById("forecastContainer");
+
+window.addEventListener("load", () => {
   function showApiLoader(bool) {
     bool
       ? (apiLoader.style.display = "block")
@@ -90,6 +116,45 @@ window.addEventListener("load", () => {
         // Test cases
         // weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/02d.png" alt="weather image"> `;
         // document.body.style.background = `linear-gradient(${bgColorObject["02d"]})`;
+      });
+
+    // forecast api call
+    const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+
+    fetch(forecastURL)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        let filteredResults = data.list.filter(
+          (item) => data.list.indexOf(item) % 8 == 0
+        );
+        console.log(filteredResults);
+
+        forecast.innerHTML = filteredResults.map((item) => {
+          const dateConversion = `${
+            months[item.dt_txt.substring(5, 7)]
+          } ${item.dt_txt.substring(8, 10)}, ${item.dt_txt.substring(
+            0,
+            4
+          )} ${item.dt_txt.substring(11)}`;
+
+          const dayIndex = new Date(dateConversion).getDay();
+
+          return `
+          <ul>
+          <li>
+            <p>${days[dayIndex]}</p>
+            <img src="./weather-icons/${
+              item.weather[0].icon
+            }.png" alt="weather icon" />
+            <p class="forecast-hiLow">H: ${Math.round(
+              item.main.temp_max
+            )}   L: ${Math.round(item.main.temp_min)}</p>
+          </li>
+        </ul>
+          `;
+        });
       });
   }
 });
