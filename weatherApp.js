@@ -101,8 +101,10 @@ window.addEventListener("load", () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        //weather data log
         console.log(data);
 
+        // changes background image based on weather icon code
         changeBackgroundImage(data);
 
         weatherCountry.innerHTML = `, ${data.sys.country}`;
@@ -126,35 +128,163 @@ window.addEventListener("load", () => {
       .then((data) => {
         console.log(data);
 
-        let filteredResults = data.list.filter(
-          (item) => data.list.indexOf(item) % 8 == 0
-        );
+        // converts list item "dt_txt" to date compatible with new Date() eg June 21, 2022 21:00:00
+        const dateConversion = (arr) =>
+          `${months[arr.dt_txt.substring(5, 7)]} ${arr.dt_txt.substring(
+            8,
+            10
+          )}, ${arr.dt_txt.substring(0, 4)} ${arr.dt_txt.substring(11)}`;
+
+        //converts current date to compatible format
+        let currentDate = new Date().toISOString();
+        console.log(currentDate); //e.g. 2022-06-17T00:02:42.257Z
+
+        // should return every date except current
+        let filteredResults = data.list.filter((item) => [
+          item.dt_txt.substring(0, 10) !== currentDate.substring(0, 10),
+        ]);
         console.log(filteredResults);
 
-        forecast.innerHTML = filteredResults.map((item) => {
-          const dateConversion = `${
-            months[item.dt_txt.substring(5, 7)]
-          } ${item.dt_txt.substring(8, 10)}, ${item.dt_txt.substring(
-            0,
-            4
-          )} ${item.dt_txt.substring(11)}`;
+        //isolates forecast results to each date
+        const forecastDays = [
+          {
+            day1: filteredResults.filter(
+              (item) =>
+                item.dt_txt.substring(8, 10) ===
+                (Number(currentDate.substring(8, 10)) + 1).toString()
+            ),
+            day1Low: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 1).toString()
+              )
+              .map((temp) => temp.main.temp_min),
+            day1High: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 1).toString()
+              )
+              .map((temp) => temp.main.temp_max),
+          },
+          {
+            day2: filteredResults.filter(
+              (item) =>
+                item.dt_txt.substring(8, 10) ===
+                (Number(currentDate.substring(8, 10)) + 2).toString()
+            ),
+            day2Low: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 2).toString()
+              )
+              .map((temp) => temp.main.temp_min),
+            day2High: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 2).toString()
+              )
+              .map((temp) => temp.main.temp_max),
+          },
+          {
+            day3: filteredResults.filter(
+              (item) =>
+                item.dt_txt.substring(8, 10) ===
+                (Number(currentDate.substring(8, 10)) + 3).toString()
+            ),
+            day3Low: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 3).toString()
+              )
+              .map((temp) => temp.main.temp_min),
+            day3High: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 3).toString()
+              )
+              .map((temp) => temp.main.temp_max),
+          },
+          {
+            day4: filteredResults.filter(
+              (item) =>
+                item.dt_txt.substring(8, 10) ===
+                (Number(currentDate.substring(8, 10)) + 4).toString()
+            ),
+            day4Low: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 4).toString()
+              )
+              .map((temp) => temp.main.temp_min),
+            day4High: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 4).toString()
+              )
+              .map((temp) => temp.main.temp_max),
+          },
+          {
+            day5: filteredResults.filter(
+              (item) =>
+                item.dt_txt.substring(8, 10) ===
+                (Number(currentDate.substring(8, 10)) + 5).toString()
+            ),
+            day5Low: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 5).toString()
+              )
+              .map((temp) => temp.main.temp_min),
+            day5High: filteredResults
+              .filter(
+                (item) =>
+                  item.dt_txt.substring(8, 10) ===
+                  (Number(currentDate.substring(8, 10)) + 5).toString()
+              )
+              .map((temp) => temp.main.temp_max),
+          },
+        ];
+        console.log(forecastDays); // displays each forecast day as array of objects
 
-          const dayIndex = new Date(dateConversion).getDay();
+        let minTemps = forecastDays.map((dayOfWeek, index) =>
+          Math.round(Math.min(...dayOfWeek[`day${index + 1}Low`]))
+        );
+        let maxTemps = forecastDays.map((dayOfWeek, index) =>
+          Math.round(Math.max(...dayOfWeek[`day${index + 1}High`]))
+        );
+        console.log(maxTemps); //  return highest temp for each day in array
+        console.log(minTemps); //  return lowest temp for each day in array
 
-          return `
-          <ul>
-          <li>
-            <p>${days[dayIndex]}</p>
-            <img src="./weather-icons/${
-              item.weather[0].icon
-            }.png" alt="weather icon" />
-            <p class="forecast-hiLow">H: ${Math.round(
-              item.main.temp_max
-            )}   L: ${Math.round(item.main.temp_min)}</p>
+        //maps through filtered results and displays into forecast div
+        //filters results to noon
+        forecast.innerHTML = filteredResults
+          .filter((time) => time.dt_txt.substring(11) === "12:00:00")
+          .map((item, index) => {
+            let itemDate = dateConversion(item);
+
+            //converts item date to week number which is used as index to "days" array
+            const dayIndex = new Date(itemDate).getDay();
+
+            return `
+          <ul class="forecast-list">
+          <li class="forecast-days">
+            <p class='forecast-week-day'>${days[dayIndex]}</p>
+            <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
+            <p class="forecast-hiLow">H: ${maxTemps[index]}</p>
+            <p class="forecast-hiLow">  L: ${minTemps[index]}</p>
           </li>
         </ul>
           `;
-        });
+          });
       });
   }
 });
