@@ -284,7 +284,8 @@ window.addEventListener("load", () => {
           </li>
         </ul>
           `;
-          });
+          })
+          .join("");
       });
   }
 });
