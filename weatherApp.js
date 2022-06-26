@@ -275,14 +275,14 @@ window.addEventListener("load", () => {
             const dayIndex = new Date(itemDate).getDay();
 
             return `
-          <ul class="forecast-list">
-          <li class="forecast-days">
+          <div class="forecast-list">
+          <div class="forecast-days">
+          <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
             <p class='forecast-week-day'>${days[dayIndex]}</p>
-            <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
-            <p class="forecast-hiLow">H: ${maxTemps[index]}</p>
-            <p class="forecast-hiLow">  L: ${minTemps[index]}</p>
-          </li>
-        </ul>
+            
+            <p class="forecast-hiLow">H: ${maxTemps[index]}      L: ${minTemps[index]}</p>
+          </div>
+        </div>
           `;
           })
           .join("");

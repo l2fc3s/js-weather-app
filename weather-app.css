@@ -123,3 +123,37 @@ body {
   font-size: 18px;
   font-weight: 500;
 }
+
+/* ----- forecast section ----- */
+.forecast-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.forecast-list {
+  width: 70%;
+}
+
+.forecast-days {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forecast-image {
+  height: auto;
+  width: 5%;
+  min-width: 40px;
+}
+
+.forecast-hiLow {
+  white-space: pre;
+}
+
+.forecast-week-day {
+  margin-right: 300px;
+}
