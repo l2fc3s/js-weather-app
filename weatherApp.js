@@ -145,115 +145,83 @@ window.addEventListener("load", () => {
         ]);
         console.log(filteredResults);
 
+        // number of days in current month
+        let dt = new Date();
+        let month = dt.getMonth();
+        let year = dt.getFullYear();
+        let daysInMonth = new Date(year, month + 1, 0).getDate();
+        console.log(daysInMonth);
+
         //isolates forecast results to each date
+        let dayNumber = Number(currentDate.substring(8, 10));
+
+        // filters results by day number including towards end of month
+        function forecastFilterFunction(item, num) {
+          return (
+            item.dt_txt.substring(8, 10) === (dayNumber + num).toString() ||
+            item.dt_txt.substring(8, 10) ===
+              "0".concat((dayNumber + num - daysInMonth).toString())
+          );
+        }
         const forecastDays = [
           {
-            day1: filteredResults.filter(
-              (item) =>
-                item.dt_txt.substring(8, 10) ===
-                (Number(currentDate.substring(8, 10)) + 1).toString()
+            day1: filteredResults.filter((item) =>
+              forecastFilterFunction(item, 1)
             ),
             day1Low: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 1).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 1))
               .map((temp) => temp.main.temp_min),
             day1High: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 1).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 1))
               .map((temp) => temp.main.temp_max),
           },
           {
-            day2: filteredResults.filter(
-              (item) =>
-                item.dt_txt.substring(8, 10) ===
-                (Number(currentDate.substring(8, 10)) + 2).toString()
+            day2: filteredResults.filter((item) =>
+              forecastFilterFunction(item, 2)
             ),
             day2Low: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 2).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 2))
               .map((temp) => temp.main.temp_min),
             day2High: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 2).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 2))
               .map((temp) => temp.main.temp_max),
           },
           {
-            day3: filteredResults.filter(
-              (item) =>
-                item.dt_txt.substring(8, 10) ===
-                (Number(currentDate.substring(8, 10)) + 3).toString()
+            day3: filteredResults.filter((item) =>
+              forecastFilterFunction(item, 3)
             ),
             day3Low: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 3).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 3))
               .map((temp) => temp.main.temp_min),
             day3High: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 3).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 3))
               .map((temp) => temp.main.temp_max),
           },
           {
-            day4: filteredResults.filter(
-              (item) =>
-                item.dt_txt.substring(8, 10) ===
-                (Number(currentDate.substring(8, 10)) + 4).toString()
+            day4: filteredResults.filter((item) =>
+              forecastFilterFunction(item, 4)
             ),
             day4Low: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 4).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 4))
               .map((temp) => temp.main.temp_min),
             day4High: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 4).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 4))
               .map((temp) => temp.main.temp_max),
           },
           {
-            day5: filteredResults.filter(
-              (item) =>
-                item.dt_txt.substring(8, 10) ===
-                (Number(currentDate.substring(8, 10)) + 5).toString()
+            day5: filteredResults.filter((item) =>
+              forecastFilterFunction(item, 5)
             ),
             day5Low: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 5).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 5))
               .map((temp) => temp.main.temp_min),
             day5High: filteredResults
-              .filter(
-                (item) =>
-                  item.dt_txt.substring(8, 10) ===
-                  (Number(currentDate.substring(8, 10)) + 5).toString()
-              )
+              .filter((item) => forecastFilterFunction(item, 5))
               .map((temp) => temp.main.temp_max),
           },
         ];
         console.log(forecastDays); // displays each forecast day as array of objects
+        console.log(`0${(dayNumber + 5 - daysInMonth).toString()}`);
 
         let minTemps = forecastDays.map((dayOfWeek, index) =>
           Math.round(Math.min(...dayOfWeek[`day${index + 1}Low`]))
@@ -270,9 +238,11 @@ window.addEventListener("load", () => {
           .filter((time) => time.dt_txt.substring(11) === "12:00:00")
           .map((item, index) => {
             let itemDate = dateConversion(item);
+            console.log(itemDate);
 
             //converts item date to week number which is used as index to "days" array
             const dayIndex = new Date(itemDate).getDay();
+            //console.log(dayIndex);
 
             return `
           <div class="forecast-list">
