@@ -157,3 +157,36 @@ body {
 .forecast-week-day {
   margin-right: 300px;
 }
+
+/* ----- hourly forecast ----- */
+
+.hourly-forecast-container {
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hourlyWeather-card {
+  height: 200px;
+  max-width: 200px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hourlyTimeOfDay {
+  font-size: 20px;
+}
+
+.hourly-image {
+  height: auto;
+  width: 100px;
+  min-width: 40px;
+}
+
+.hourly-temp {
+  font-size: 20px;
+}

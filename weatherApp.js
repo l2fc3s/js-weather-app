@@ -238,7 +238,7 @@ window.addEventListener("load", () => {
           .filter((time) => time.dt_txt.substring(11) === "12:00:00")
           .map((item, index) => {
             let itemDate = dateConversion(item);
-            console.log(itemDate);
+            //console.log(itemDate);
 
             //converts item date to week number which is used as index to "days" array
             const dayIndex = new Date(itemDate).getDay();
@@ -250,12 +250,50 @@ window.addEventListener("load", () => {
           <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
             <p class='forecast-week-day'>${days[dayIndex]}</p>
             
-            <p class="forecast-hiLow">H: ${maxTemps[index]}      L: ${minTemps[index]}</p>
+            <p class="forecast-hiLow">L: ${minTemps[index]}      H: ${maxTemps[index]}</p>
           </div>
         </div>
           `;
           })
           .join("");
+
+        // hourly forecast
+        let hourlyForecast = [...data.list].slice(0, 9);
+        let hourlyContainer = document.getElementById("hourlyContainer");
+
+        const timeConversion = (obj) => {
+          let hour = obj.dt_txt.substring(11, 13);
+          if (hour === "00" || hour === "12") {
+            return "12";
+          }
+          return Number(hour) % 12;
+        };
+
+        const amOrPm = (obj) => {
+          let hour = Number(obj.dt_txt.substring(11, 13));
+          return hour >= 12 ? "PM" : "AM";
+        };
+
+        hourlyContainer.innerHTML = hourlyForecast
+          .map((item) => {
+            console.log(item);
+            return `
+          <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">${timeConversion(
+            item
+          )} <small>${amOrPm(item)}</small></p>
+          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/${
+            item.weather[0].icon
+          }.png" alt="weather icon" />
+          <p class="hourly-temp" id="'hourlyTemp">${Math.round(
+            item.main.temp
+          )}&deg;</p>
+          </div>
+          `;
+          })
+          .join("");
+
+        console.log(hourlyForecast);
       });
   }
 });

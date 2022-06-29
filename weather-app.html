@@ -45,8 +45,7 @@
       </div>
     </div>
 
-    <div class="weather-data-container">
-      
+    <div class="forecast-hourly-container">
         <!-- Ideas: 4 card grid or flex cards showing - Wind, index, temp, humidity.
         - hourly forecast?  lookup slider
         - 10 day forecast in a list / table 
@@ -57,31 +56,85 @@
           <div class="forecast-days">
             <img class='forecast-image' src="./weather-icons/01d.png" alt="weather icon" />
             <p class='forecast-week-day'>Day of Week</p> 
-            <p class="forecast-hiLow">H: --      L: --</p>
+            <p class="forecast-hiLow">L: --      H: --</p>
           </div>
           <div class="forecast-days">
             <img class='forecast-image' src="./weather-icons/01d.png" alt="weather icon" />
             <p class='forecast-week-day'>Day of Week</p> 
-            <p class="forecast-hiLow">H: --      L: --</p>
+            <p class="forecast-hiLow">L: --      H: --</p>
           </div>
           <div class="forecast-days">
             <img class='forecast-image' src="./weather-icons/01d.png" alt="weather icon" />
             <p class='forecast-week-day'>Day of Week</p> 
-            <p class="forecast-hiLow">H: --      L: --</p>
+            <p class="forecast-hiLow">L: --      H: --</p>
           </div>
           <div class="forecast-days">
             <img class='forecast-image' src="./weather-icons/01d.png" alt="weather icon" />
             <p class='forecast-week-day'>Day of Week</p> 
-            <p class="forecast-hiLow">H: --      L: --</p>
+            <p class="forecast-hiLow">L: --      H: --</p>
           </div>
           <div class="forecast-days">
             <img class='forecast-image' src="./weather-icons/01d.png" alt="weather icon" />
             <p class='forecast-week-day'>Day of Week</p> 
-            <p class="forecast-hiLow">H: --      L: --</p>
+            <p class="forecast-hiLow">L: --      H: --</p>
           </div>
         </div>
       </div>
+
+      <div id='hourlyContainer' class="hourly-forecast-container">
+         <!-- display temp, time, and image icon -->
+         <div id="hourlyWeatherCard" class="hourlyWeather-card">
+           <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+         </div>
+         <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+        <div id="hourlyWeatherCard" class="hourlyWeather-card">
+          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+         <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
+         <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
+        </div>
+      </div>    
     </div>
+
+    <div class="weather-data-container">
+      <!-- display cards with current weather data such as index, humidity, feels like, etc -->
+    </div>
+
 
     <script src="./weatherApp.js"></script>
   </body>
