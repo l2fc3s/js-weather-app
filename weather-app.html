@@ -84,47 +84,47 @@
       <div id='hourlyContainer' class="hourly-forecast-container">
          <!-- display temp, time, and image icon -->
          <div id="hourlyWeatherCard" class="hourlyWeather-card">
-           <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+           <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
           <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
           <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
          </div>
          <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
         <div id="hourlyWeatherCard" class="hourlyWeather-card">
-          <p class="hourlyTimeOfDay" id="timeOfDay">0 <small>PM</small></p>
+          <p class="hourlyTimeOfDay" id="timeOfDay">-- <small>PM</small></p>
          <img class='hourly-image' id="hourlyIcon" src="./weather-icons/01d.png" alt="weather icon" />
          <p class="hourly-temp" id="'hourlyTemp">0&deg;</p>
         </div>
@@ -132,7 +132,34 @@
     </div>
 
     <div class="weather-data-container">
-      <!-- display cards with current weather data such as index, humidity, feels like, etc -->
+      <!-- display cards with current weather data such as index, humidity, feels like, etc 
+      - feels like (main)
+      - humidity (main)
+      - wind speed mph (wind)
+      - weather.description (current condition)
+      
+      -->
+
+      <div class="data-card">
+        <p class="data-title">Feels Like</p>
+        <p id="feelsLike" class="data-item">--&deg;</p>
+      </div>
+
+      <div class="data-card">
+        <p class="data-title">Humidity</p>
+        <p id="humidity" class="data-item">--%</p>
+      </div>
+
+      <div class="data-card">
+        <p class="data-title">Wind Speed</p>
+        <p id="windSpeed" class="data-item">-- mph</p>
+      </div>
+
+      <div class="data-card">
+        <p class="data-title">Current Condition</p>
+        <p id="currentCondition" class="data-item">--</p>
+      </div>
+
     </div>
 
 

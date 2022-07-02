@@ -64,6 +64,11 @@ let weatherConditionDisplay = document.getElementById("weatherCondition");
 let weatherIcon = document.getElementById("weatherIconContainer");
 let forecast = document.getElementById("forecastContainer");
 
+let feelsLike = document.getElementById("feelsLike");
+let humidity = document.getElementById("humidity");
+let windSpeed = document.getElementById("windSpeed");
+let currentCondition = document.getElementById("currentCondition");
+
 window.addEventListener("load", () => {
   function showApiLoader(bool) {
     bool
@@ -115,9 +120,15 @@ window.addEventListener("load", () => {
         tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
         lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
 
-        // Test cases
-        // weatherIcon.innerHTML = `<img class='weather-icon' src="./weather icons/02d.png" alt="weather image"> `;
-        // document.body.style.background = `linear-gradient(${bgColorObject["02d"]})`;
+        feelsLike.innerHTML = `${data.main.feels_like}&deg;`;
+        humidity.innerHTML = `${data.main.humidity}%`;
+        windSpeed.innerHTML = `${Math.round(data.wind.speed)} mph`;
+
+        let conditionDescription = data.weather[0].description
+          .split(" ")
+          .map((word) => word[0].toUpperCase() + word.substring(1))
+          .join(" ");
+        currentCondition.innerHTML = conditionDescription;
       });
 
     // forecast api call
@@ -137,7 +148,7 @@ window.addEventListener("load", () => {
 
         //converts current date to compatible format
         let currentDate = new Date().toISOString();
-        console.log(currentDate); //e.g. 2022-06-17T00:02:42.257Z
+        // console.log(currentDate); //e.g. 2022-06-17T00:02:42.257Z
 
         // should return every date except current
         let filteredResults = data.list.filter((item) => [
@@ -150,17 +161,19 @@ window.addEventListener("load", () => {
         let month = dt.getMonth();
         let year = dt.getFullYear();
         let daysInMonth = new Date(year, month + 1, 0).getDate();
-        console.log(daysInMonth);
+        //console.log(daysInMonth);
 
         //isolates forecast results to each date
         let dayNumber = Number(currentDate.substring(8, 10));
+        //console.log(dayNumber);
 
         // filters results by day number including towards end of month
         function forecastFilterFunction(item, num) {
+          //console.log(dayNumber + num);
           return (
-            item.dt_txt.substring(8, 10) === (dayNumber + num).toString() ||
-            item.dt_txt.substring(8, 10) ===
-              "0".concat((dayNumber + num - daysInMonth).toString())
+            Number(item.dt_txt.substring(8, 10)) === dayNumber + num ||
+            Number(item.dt_txt.substring(8, 10)) ===
+              dayNumber + num - daysInMonth
           );
         }
         const forecastDays = [
@@ -221,7 +234,6 @@ window.addEventListener("load", () => {
           },
         ];
         console.log(forecastDays); // displays each forecast day as array of objects
-        console.log(`0${(dayNumber + 5 - daysInMonth).toString()}`);
 
         let minTemps = forecastDays.map((dayOfWeek, index) =>
           Math.round(Math.min(...dayOfWeek[`day${index + 1}Low`]))
@@ -250,7 +262,7 @@ window.addEventListener("load", () => {
           <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
             <p class='forecast-week-day'>${days[dayIndex]}</p>
             
-            <p class="forecast-hiLow">L: ${minTemps[index]}      H: ${maxTemps[index]}</p>
+            <p class="forecast-hiLow">L: ${minTemps[index]}&deg;      H: ${maxTemps[index]}&deg;</p>
           </div>
         </div>
           `;
@@ -276,7 +288,7 @@ window.addEventListener("load", () => {
 
         hourlyContainer.innerHTML = hourlyForecast
           .map((item) => {
-            console.log(item);
+            // console.log(item);
             return `
           <div id="hourlyWeatherCard" class="hourlyWeather-card">
           <p class="hourlyTimeOfDay" id="timeOfDay">${timeConversion(
@@ -293,7 +305,7 @@ window.addEventListener("load", () => {
           })
           .join("");
 
-        console.log(hourlyForecast);
+        // console.log(hourlyForecast);
       });
   }
 });
