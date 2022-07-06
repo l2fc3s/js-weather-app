@@ -120,9 +120,9 @@ window.addEventListener("load", () => {
         tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
         lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
 
-        feelsLike.innerHTML = `${data.main.feels_like}&deg;`;
+        feelsLike.innerHTML = `${Math.round(data.main.feels_like)}&deg;`;
         humidity.innerHTML = `${data.main.humidity}%`;
-        windSpeed.innerHTML = `${Math.round(data.wind.speed)} mph`;
+        windSpeed.innerHTML = `${Math.round(data.wind.speed)}`;
 
         let conditionDescription = data.weather[0].description
           .split(" ")

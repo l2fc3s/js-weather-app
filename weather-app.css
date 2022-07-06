@@ -12,6 +12,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
 }
 
@@ -189,4 +190,59 @@ body {
 
 .hourly-temp {
   font-size: 20px;
+}
+
+/* ----- Weather Data ------ */
+
+.weather-data-container {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(2, 400px);
+  justify-content: center;
+  align-items: center;
+}
+
+.data-card {
+  background-color: rgba(147, 147, 147, 0.523);
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 30px;
+}
+
+.data-title {
+  padding: 0;
+  margin: 0;
+}
+
+.data-item {
+  padding: 0;
+  margin: 0;
+}
+
+.data-title {
+  font-weight: 700;
+  font-size: 50px;
+  padding-bottom: 40px;
+}
+
+.data-item {
+  font-weight: 500;
+  font-size: 120px;
+}
+
+.data-item-words {
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 70px;
+  text-align: center;
+}
+
+.mph {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
 }
