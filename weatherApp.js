@@ -83,6 +83,8 @@ window.addEventListener("load", () => {
     fetchWeather();
   };
 
+  // test line for branch
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, errFunction);
     showApiLoader(true);
