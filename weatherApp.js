@@ -60,7 +60,6 @@ let currentTemp = document.getElementById("weatherTemp");
 let tempHigh = document.getElementById("weatherHigh");
 let lowTemp = document.getElementById("weatherLow");
 let apiLoader = document.getElementById("apiLoader");
-let weatherConditionDisplay = document.getElementById("weatherCondition");
 let weatherIcon = document.getElementById("weatherIconContainer");
 let forecast = document.getElementById("forecastContainer");
 
@@ -74,12 +73,6 @@ window.addEventListener("load", () => {
     bool
       ? (apiLoader.style.display = "block")
       : (apiLoader.style.display = "none");
-  }
-
-  function displayWeatherCondition(bool) {
-    bool
-      ? (weatherConditionDisplay.style.display = "flex")
-      : (weatherConditionDisplay.style.display = "none");
   }
 
   const success = (pos) => {
