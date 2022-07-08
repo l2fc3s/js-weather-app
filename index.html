@@ -17,39 +17,38 @@
   <body>
     <div class="weather-city">
       <p class="weather-header" id="weatherHeader">
-        <!-- city name here -->
+        Getting Location...
       </p>
       <p id="weatherHeaderCountry">&nbsp;</p>
     </div>
 
-    <div class="weather-container">
-      <div id="weatherCondition" class="weather-condition">
+    <div class="main-weather-container">
+
         <div class="weather-icon-container" id="weatherIconContainer">
           <!-- img icon here -->
+          <img id="weatherIcon" class='weather-icon' src="./weather-icons/01d.png" alt="weather image">
           <div id="apiLoader" class="loading-display-container">
             <div class="loading-container">
               <div class="loader"></div>
             </div>
           </div>
         </div>
-        <p class="weather-temp" id="weatherTemp">0&deg;</p>
 
+        <p class="weather-temp" id="weatherTemp">0&deg;</p>
         <p class="weather-description" id="weatherDescription">
-          <!-- weather condition here -->
+          Current Weather
         </p>
 
         <div class="high-low-container">
           <p class="high-low-temp" id="weatherHigh">H: 0&deg;&nbsp;</p>
           <p class="high-low-temp" id="weatherLow">L: 0&deg;</p>
         </div>
-      </div>
+
     </div>
 
+
+
     <div class="forecast-hourly-container">
-        <!-- Ideas: 4 card grid or flex cards showing - Wind, index, temp, humidity.
-        - hourly forecast?  lookup slider
-        - 10 day forecast in a list / table 
-        - both sections with a card style blurred background see ios app for ideas -->
       
       <div id="forecastContainer"" class="forecast-container">
         <div class="forecast-list">

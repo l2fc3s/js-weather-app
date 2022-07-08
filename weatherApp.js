@@ -61,6 +61,7 @@ let tempHigh = document.getElementById("weatherHigh");
 let lowTemp = document.getElementById("weatherLow");
 let apiLoader = document.getElementById("apiLoader");
 let weatherIcon = document.getElementById("weatherIconContainer");
+let weatherImage = document.getElementById("weatherIcon");
 let forecast = document.getElementById("forecastContainer");
 
 let feelsLike = document.getElementById("feelsLike");
@@ -70,6 +71,7 @@ let currentCondition = document.getElementById("currentCondition");
 
 window.addEventListener("load", () => {
   function showApiLoader(bool) {
+    weatherImage.style.display = "none";
     bool
       ? (apiLoader.style.display = "block")
       : (apiLoader.style.display = "none");
@@ -80,17 +82,18 @@ window.addEventListener("load", () => {
     longitude = pos.coords.longitude;
     console.log(latitude);
     console.log(longitude);
+    showApiLoader(true);
     fetchWeather();
   };
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, errFunction);
-    showApiLoader(true);
   }
 
   function errFunction() {
     alert("Geocoder failed");
     showApiLoader(false);
+    weatherCity.innerHTML = "";
   }
 
   function fetchWeather() {
