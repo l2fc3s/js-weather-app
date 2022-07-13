@@ -62,7 +62,7 @@ let lowTemp = document.getElementById("weatherLow");
 let apiLoader = document.getElementById("apiLoader");
 let weatherIcon = document.getElementById("weatherIconContainer");
 let weatherImage = document.getElementById("weatherIcon");
-let forecast = document.getElementById("forecastContainer");
+let forecast = document.getElementById("forecastList");
 
 let feelsLike = document.getElementById("feelsLike");
 let humidity = document.getElementById("humidity");
@@ -253,14 +253,12 @@ window.addEventListener("load", () => {
             //console.log(dayIndex);
 
             return `
-          <div class="forecast-list">
           <div class="forecast-days">
           <img class='forecast-image' src="./weather-icons/${item.weather[0].icon}.png" alt="weather icon" />
             <p class='forecast-week-day'>${days[dayIndex]}</p>
             
-            <p class="forecast-hiLow">L: ${minTemps[index]}&deg;      H: ${maxTemps[index]}&deg;</p>
+            <p class="forecast-hiLow">H: ${maxTemps[index]}&deg;      L: ${minTemps[index]}&deg;</p>
           </div>
-        </div>
           `;
           })
           .join("");

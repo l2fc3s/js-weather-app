@@ -96,16 +96,18 @@ body {
   padding: 40px 0 0 0;
   margin: 0;
   text-align: center;
-  /* text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356); */
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 .weather-description {
   font-size: 20px;
   font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 .high-low-temp {
   display: inline-block;
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 .high-low-container {
@@ -120,45 +122,89 @@ body {
 
 /* ----- forecast section ----- */
 .forecast-container {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 150px 0 100px 0;
 }
 
-.forecast-list {
-  width: 70%;
+.forecast-card {
+  width: 60%;
+  max-width: 1000px;
+  background-color: rgba(147, 147, 147, 0.523);
+  padding: 30px;
+  border-radius: 30px;
+}
+
+/* .forecast-list {
+  width: 60%;
+  max-width: 1000px;
+  background-color: rgba(147, 147, 147, 0.523);
+  padding: 30px;
+  border-radius: 30px;
+} */
+
+.forecast-header {
+  font-size: 22px;
+  position: relative;
+  bottom: 13px;
+  font-weight: 600;
 }
 
 .forecast-days {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 0 5px 0;
 }
 
 .forecast-image {
   height: auto;
-  width: 5%;
-  min-width: 40px;
+  width: 7%;
+  min-width: 50px;
+  padding-right: 10px;
+}
+.forecast-week-day {
+  margin-right: 500px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .forecast-hiLow {
   white-space: pre;
-}
-
-.forecast-week-day {
-  margin-right: 300px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 /* ----- hourly forecast ----- */
 
 .hourly-forecast-container {
-  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.hourly-card-container {
+  background-color: rgba(147, 147, 147, 0.523);
+  display: flex;
+  /* align-items: center; */
+  width: 60%;
+  max-width: 1000px;
+  padding: 30px;
+  border-radius: 30px;
+  overflow: scroll;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.hourly-card-container::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .hourlyWeather-card {
@@ -239,3 +285,43 @@ body {
   margin: 0;
   font-size: 30px;
 }
+
+/* ----------------- Mobile Section ---------------  */
+
+/* Main */
+
+/* ForeCast */
+
+@media screen and (max-width: 1360px) {
+  .forecast-week-day {
+    margin-right: 300px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .forecast-week-day {
+    margin-right: 185px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .forecast-week-day {
+    margin-right: 105px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .forecast-week-day {
+    margin-right: 55px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .forecast-week-day {
+    margin-right: 20px;
+  }
+}
+
+/* Hourly */
+
+/* Data Cards */
