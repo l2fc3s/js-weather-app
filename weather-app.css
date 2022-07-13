@@ -128,7 +128,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 150px 0 100px 0;
+  padding: 100px 0 50px 0;
 }
 
 .forecast-card {
@@ -138,14 +138,6 @@ body {
   padding: 30px;
   border-radius: 30px;
 }
-
-/* .forecast-list {
-  width: 60%;
-  max-width: 1000px;
-  background-color: rgba(147, 147, 147, 0.523);
-  padding: 30px;
-  border-radius: 30px;
-} */
 
 .forecast-header {
   font-size: 22px;
@@ -187,17 +179,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
+}
+
+.forecast-header-hourly {
+  font-size: 22px;
+  /* position: relative;
+  bottom: 13px; */
+  font-weight: 600;
+  padding: 15px 0 0 30px;
+}
+
+.hourly-card-wrapper {
+  background-color: rgba(147, 147, 147, 0.523);
+  /* display: flex; */
+  width: 65%;
+  max-width: 1000px;
+  /* padding: 30px; */
+  border-radius: 30px;
 }
 
 .hourly-card-container {
-  background-color: rgba(147, 147, 147, 0.523);
   display: flex;
-  /* align-items: center; */
-  width: 60%;
-  max-width: 1000px;
-  padding: 30px;
-  border-radius: 30px;
   overflow: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
