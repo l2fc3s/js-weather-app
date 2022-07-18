@@ -242,6 +242,7 @@ body {
   grid-template-columns: repeat(2, 400px);
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 .data-card {
@@ -283,10 +284,26 @@ body {
   text-align: center;
 }
 
-.mph {
+.data-text {
   padding: 0;
   margin: 0;
   font-size: 30px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+footer > a {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+
+footer > a:hover {
+  color: rgb(171, 0, 171);
+  transition: 0.5s;
 }
 
 /* ----------------- Mobile Section ---------------  */
