@@ -26,6 +26,8 @@ body {
 .weather-city p {
   display: inline-block;
   vertical-align: top;
+  font-size: 25px;
+  padding-top: 10px;
 }
 
 .weather-header {
@@ -235,19 +237,26 @@ body {
 }
 
 /* ----- Weather Data ------ */
+.data-section {
+  display: flex;
+  justify-content: center;
+}
 
 .weather-data-container {
   display: grid;
   gap: 50px;
-  grid-template-columns: repeat(2, 400px);
+  grid-template-columns: repeat(2, 45%);
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
+  width: 65%;
+  max-width: 1000px;
+  /* background-color: red; */
 }
 
 .data-card {
   background-color: rgba(147, 147, 147, 0.523);
-  height: 400px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,9 +264,18 @@ body {
   border-radius: 30px;
 }
 
+.card-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
 .data-title {
   padding: 0;
   margin: 0;
+  white-space: nowrap;
 }
 
 .data-item {
@@ -267,27 +285,21 @@ body {
 
 .data-title {
   font-weight: 700;
-  font-size: 50px;
-  padding-bottom: 40px;
+  font-size: clamp(30px, 4.5vw, 75px);
+  /* padding-bottom: 40px; */
+  padding: 20px 0 30px 0;
 }
 
 .data-item {
   font-weight: 500;
   font-size: 120px;
-}
-
-.data-item-words {
-  padding: 0;
-  margin: 0;
-  font-weight: 500;
-  font-size: 70px;
-  text-align: center;
+  font-size: clamp(65px, 10vw, 150px);
 }
 
 .data-text {
   padding: 0;
   margin: 0;
-  font-size: 30px;
+  font-size: clamp(20px, 3vw, 30px);
 }
 
 footer {
@@ -345,3 +357,23 @@ footer > a:hover {
 /* Hourly */
 
 /* Data Cards */
+@media screen and (max-width: 960px) {
+  .weather-data-container {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .weather-data-container {
+    grid-template-columns: 100%;
+  }
+  .data-card {
+    height: 245px;
+  }
+  .card-contents {
+    padding: 10px;
+  }
+  .data-title {
+    padding: 0px 0 10px 0;
+  }
+}
