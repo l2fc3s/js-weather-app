@@ -19,15 +19,7 @@ const months = {
   12: "December",
 };
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 let latitude;
 let longitude;
@@ -138,15 +130,12 @@ window.addEventListener("load", () => {
         let month = dt.getMonth();
         let year = dt.getFullYear();
         let daysInMonth = new Date(year, month + 1, 0).getDate();
-        //console.log(daysInMonth);
 
         //isolates forecast results to each date
         let dayNumber = Number(currentDate.substring(8, 10));
-        //console.log(dayNumber);
 
         // filters results by day number including towards end of month
         function forecastFilterFunction(item, num) {
-          //console.log(dayNumber + num);
           return (
             Number(item.dt_txt.substring(8, 10)) === dayNumber + num ||
             Number(item.dt_txt.substring(8, 10)) ===
@@ -227,11 +216,9 @@ window.addEventListener("load", () => {
           .filter((time) => time.dt_txt.substring(11) === "12:00:00")
           .map((item, index) => {
             let itemDate = dateConversion(item);
-            //console.log(itemDate);
 
             //converts item date to week number which is used as index to "days" array
             const dayIndex = new Date(itemDate).getDay();
-            //console.log(dayIndex);
 
             return `
           <div class="forecast-days">
@@ -263,7 +250,6 @@ window.addEventListener("load", () => {
 
         hourlyContainer.innerHTML = hourlyForecast
           .map((item) => {
-            // console.log(item);
             return `
           <div id="hourlyWeatherCard" class="hourlyWeather-card">
           <p class="hourlyTimeOfDay" id="timeOfDay">${timeConversion(
@@ -279,8 +265,6 @@ window.addEventListener("load", () => {
           `;
           })
           .join("");
-
-        // console.log(hourlyForecast);
       });
   }
 });

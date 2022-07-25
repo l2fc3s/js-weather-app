@@ -5,6 +5,8 @@ body {
   padding: 0;
   min-height: 100%;
   color: #fff;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -26,8 +28,9 @@ body {
 .weather-city p {
   display: inline-block;
   vertical-align: top;
-  font-size: 25px;
+  font-size: 15px;
   padding-top: 10px;
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 .weather-header {
@@ -95,6 +98,7 @@ body {
 
 .weather-temp {
   font-size: clamp(150px, 20vw, 250px);
+  font-weight: 400;
   padding: 40px 0 0 0;
   margin: 0;
   text-align: center;
@@ -103,7 +107,7 @@ body {
 
 .weather-description {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
@@ -134,7 +138,7 @@ body {
 }
 
 .forecast-card {
-  width: 60%;
+  width: 75%;
   max-width: 1000px;
   background-color: rgba(147, 147, 147, 0.523);
   padding: 30px;
@@ -142,10 +146,10 @@ body {
 }
 
 .forecast-header {
-  font-size: 22px;
+  font-size: 23px;
+  font-weight: 500;
   position: relative;
   bottom: 13px;
-  font-weight: 600;
 }
 
 .forecast-days {
@@ -163,14 +167,15 @@ body {
 }
 .forecast-week-day {
   margin-right: 500px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 700;
 }
 
 .forecast-hiLow {
   white-space: pre;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 700;
+  margin-right: 20px;
 }
 
 /* ----- hourly forecast ----- */
@@ -185,19 +190,15 @@ body {
 }
 
 .forecast-header-hourly {
-  font-size: 22px;
-  /* position: relative;
-  bottom: 13px; */
-  font-weight: 600;
+  font-size: 23px;
+  font-weight: 500;
   padding: 15px 0 0 30px;
 }
 
 .hourly-card-wrapper {
   background-color: rgba(147, 147, 147, 0.523);
-  /* display: flex; */
-  width: 65%;
+  width: 75%;
   max-width: 1000px;
-  /* padding: 30px; */
   border-radius: 30px;
 }
 
@@ -228,8 +229,8 @@ body {
 
 .hourly-image {
   height: auto;
-  width: 100px;
-  min-width: 40px;
+  width: 100%;
+  min-width: 70px;
 }
 
 .hourly-temp {
@@ -249,7 +250,7 @@ body {
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
-  width: 65%;
+  width: 80%;
   max-width: 1000px;
   /* background-color: red; */
 }
@@ -285,7 +286,7 @@ body {
 
 .data-title {
   font-weight: 700;
-  font-size: clamp(30px, 4.5vw, 75px);
+  font-size: clamp(20px, 4.5vw, 75px);
   /* padding-bottom: 40px; */
   padding: 20px 0 30px 0;
 }
@@ -293,7 +294,7 @@ body {
 .data-item {
   font-weight: 500;
   font-size: 120px;
-  font-size: clamp(65px, 10vw, 150px);
+  font-size: clamp(50px, 10vw, 150px);
 }
 
 .data-text {
@@ -349,12 +350,34 @@ footer > a:hover {
 }
 
 @media screen and (max-width: 460px) {
+  .forecast-header {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
   .forecast-week-day {
     margin-right: 20px;
+  }
+
+  .forecast-hiLow {
+    font-size: 17px;
+    font-weight: 700;
+    margin-right: 0;
+  }
+
+  .forecast-week-day {
+    font-size: 16px;
+    font-weight: 700;
   }
 }
 
 /* Hourly */
+@media screen and (max-width: 460px) {
+  .forecast-header-hourly {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
 
 /* Data Cards */
 @media screen and (max-width: 960px) {
@@ -364,16 +387,33 @@ footer > a:hover {
 }
 
 @media screen and (max-width: 640px) {
-  .weather-data-container {
-    grid-template-columns: 100%;
+  .data-title {
+    white-space: normal;
+    text-align: center;
+    padding: 0px 0 10px 0;
   }
   .data-card {
-    height: 245px;
+    height: 180px;
   }
-  .card-contents {
-    padding: 10px;
-  }
+}
+
+@media screen and (max-width: 460px) {
   .data-title {
-    padding: 0px 0 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .data-card {
+    height: 150px;
+  }
+
+  .data-text {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  footer {
+    font-size: 12px;
   }
 }
