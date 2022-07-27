@@ -97,6 +97,7 @@ body {
 }
 
 .weather-temp {
+  min-height: 0vw;
   font-size: clamp(150px, 20vw, 250px);
   font-weight: 400;
   padding: 40px 0 0 0;
@@ -200,6 +201,7 @@ body {
   width: 75%;
   max-width: 1000px;
   border-radius: 30px;
+  padding-bottom: 15px;
 }
 
 .hourly-card-container {
@@ -207,18 +209,20 @@ body {
   overflow: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .hourly-card-container::-webkit-scrollbar {
   width: 0 !important;
+  display: none;
 }
 
 .hourlyWeather-card {
   height: 200px;
   max-width: 200px;
-  padding: 10px;
+  padding: 0 10px 0 10px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
 }
@@ -228,9 +232,9 @@ body {
 }
 
 .hourly-image {
-  height: auto;
   width: 100%;
-  min-width: 70px;
+  height: auto;
+  min-width: 90px;
 }
 
 .hourly-temp {
@@ -286,20 +290,21 @@ body {
 
 .data-title {
   font-weight: 700;
-  font-size: clamp(20px, 4.5vw, 75px);
-  /* padding-bottom: 40px; */
+  min-height: 0vw;
+  font-size: clamp(20px, 4.5vw, 70px);
   padding: 20px 0 30px 0;
 }
 
 .data-item {
   font-weight: 500;
-  font-size: 120px;
+  min-height: 0vw;
   font-size: clamp(50px, 10vw, 150px);
 }
 
 .data-text {
   padding: 0;
   margin: 0;
+  min-height: 0vw;
   font-size: clamp(20px, 3vw, 30px);
 }
 
@@ -312,6 +317,7 @@ footer > a {
   text-decoration: none;
   color: white;
   font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 footer > a:hover {
