@@ -10,6 +10,7 @@ body {
 }
 
 body {
+  background-color: rgb(147, 147, 147);
   background: url(./background-images/01d.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -198,7 +199,7 @@ body {
 
 .hourly-card-wrapper {
   background-color: rgba(147, 147, 147, 0.523);
-  width: 75%;
+  width: 88%;
   max-width: 1000px;
   border-radius: 30px;
   padding-bottom: 15px;
@@ -207,14 +208,6 @@ body {
 .hourly-card-container {
   display: flex;
   overflow: scroll;
-  overflow: -moz-scrollbars-none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hourly-card-container::-webkit-scrollbar {
-  width: 0 !important;
-  display: none;
 }
 
 .hourlyWeather-card {
@@ -256,7 +249,6 @@ body {
   padding-bottom: 50px;
   width: 80%;
   max-width: 1000px;
-  /* background-color: red; */
 }
 
 .data-card {
@@ -311,13 +303,13 @@ body {
 footer {
   text-align: center;
   padding: 20px;
+  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 footer > a {
   text-decoration: none;
   color: white;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
 }
 
 footer > a:hover {
@@ -378,6 +370,19 @@ footer > a:hover {
 }
 
 /* Hourly */
+@media screen and (max-width: 820px) {
+  .hourly-card-container {
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hourly-card-container::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+  }
+}
+
 @media screen and (max-width: 460px) {
   .forecast-header-hourly {
     font-size: 18px;
@@ -400,6 +405,9 @@ footer > a:hover {
   }
   .data-card {
     height: 180px;
+  }
+  .weather-data-container {
+    gap: 40px;
   }
 }
 
