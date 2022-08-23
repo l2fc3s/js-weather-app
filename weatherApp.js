@@ -43,7 +43,13 @@ let cloudPercentage = document.getElementById("cloudPercentage");
 let weatherVisibility = document.getElementById("visibility");
 let pressure = document.getElementById("pressure");
 
-window.addEventListener("load", () => {
+let navIcon = document.getElementById("navIcon");
+let navMenu = document.querySelector(".nav-menu");
+
+navIcon.addEventListener("click", () => (navMenu.style.display = "block"));
+
+// Main weather api call and functionality:
+const getWeather = () => {
   function showApiLoader(bool) {
     weatherImage.style.display = "none";
     bool
@@ -268,4 +274,6 @@ window.addEventListener("load", () => {
           .join("");
       });
   }
-});
+};
+
+window.addEventListener("load", getWeather);
