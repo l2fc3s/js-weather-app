@@ -45,8 +45,21 @@ let pressure = document.getElementById("pressure");
 
 let navIcon = document.getElementById("navIcon");
 let navMenu = document.querySelector(".nav-menu");
+let closeNavIcon = document.getElementById("closeNavIcon");
 
+// navbar and search section
 navIcon.addEventListener("click", () => (navMenu.style.display = "block"));
+closeNavIcon.addEventListener("click", () => (navMenu.style.display = "none"));
+
+const form = document.getElementById("form");
+
+const logSubmit = (e) => {
+  console.log("form submitted: " + e);
+  e.preventDefault();
+  alert("form submit works");
+};
+
+form.addEventListener("submit", logSubmit);
 
 // Main weather api call and functionality:
 const getWeather = () => {
@@ -124,7 +137,7 @@ const getWeather = () => {
 
         //converts current date to compatible format
         let currentDate = new Date().toISOString();
-        // console.log(currentDate); //e.g. 2022-06-17T00:02:42.257Z
+        //e.g. 2022-06-17T00:02:42.257Z
 
         // should return every date except current
         let filteredResults = data.list.filter((item) => [

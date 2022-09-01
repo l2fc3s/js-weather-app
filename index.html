@@ -25,14 +25,34 @@
   <body style="background-color: rgb(147, 147, 147)">
     <!-- <====== navbar section ======> -->
     <nav class="navbar">
-      <div class="navbar-container">
-        <div class="list-icon">
-          <i id="navIcon" class="fa-solid fa-list-ul"></i>
+      <div class="navContainer">
+        <div class="search-container">
+          <form id="form">
+            <input class="searchBar" type="text" placeholder="Search.." />
+            <button class="search-button" type="submit">Search</button>
+          </form>
         </div>
+
+        <i id="navIcon" class="fa-solid fa-list-ul list-icon"></i>
       </div>
     </nav>
 
-    <div class="nav-menu">Hello</div>
+    <div class="nav-menu">
+      <div class="navContainer">
+        <div class="search-container">
+          <form id="form">
+            <input class="searchBar" type="text" placeholder="Search.." />
+            <button class="search-button" type="submit">Search</button>
+          </form>
+        </div>
+
+        <i id="closeNavIcon" class="fa-solid fa-xmark list-icon"></i>
+      </div>
+
+      <!-- <div class="close-icon-container">
+        <i id="closeNavIcon" class="fa-solid fa-xmark"></i>
+      </div> -->
+    </div>
 
     <!-- ------- NAV END ------- -->
 

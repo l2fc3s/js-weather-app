@@ -23,11 +23,43 @@ body {
 .navbar {
   /* height: 50px; */
   z-index: 98;
+  background-color: rgb(147, 147, 147);
 }
 
-.navbar-container {
-  /* display: flex;
-  align-items: center; */
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.search-container {
+  position: absolute;
+  margin: 0 auto;
+  flex: 0 1 auto;
+}
+.searchBar {
+  padding: 6px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 17px;
+  /* margin-left: auto; */
+}
+
+.search-button {
+  float: right;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  background: #ddd;
+  border-radius: 0 5px 5px 0;
+}
+
+.list-icon {
+  padding: 8px 20px 8px 0;
+  font-size: 30px;
+  margin-left: auto;
+  flex: 0 1 auto;
 }
 
 #navIcon:hover {
@@ -36,12 +68,7 @@ body {
   transition: 0.3s;
 }
 
-.list-icon {
-  padding: 8px 20px 8px 10px;
-  font-size: 30px;
-  text-align: right;
-}
-
+/* ---- nav menu open ---- */
 .nav-menu {
   display: none;
   top: 0px;
@@ -50,10 +77,21 @@ body {
   bottom: 0px;
   position: absolute;
   z-index: 1000;
-  background-color: red;
-  color: red;
+  background-color: rgb(147, 147, 147);
   height: 100%;
   width: 100%;
+}
+
+.close-icon-container {
+  padding: 3px 20px 8px 0;
+  font-size: 35px;
+  text-align: right;
+}
+
+#closeNavIcon:hover {
+  cursor: pointer;
+  color: blue;
+  transition: 0.3s;
 }
 
 /* ------- end nav section ------ */
