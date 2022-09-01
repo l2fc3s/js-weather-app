@@ -53,13 +53,21 @@ closeNavIcon.addEventListener("click", () => (navMenu.style.display = "none"));
 
 const form = document.getElementById("form");
 
-const logSubmit = (e) => {
-  console.log("form submitted: " + e);
+const locationSearch = (e) => {
   e.preventDefault();
-  alert("form submit works");
+  let textBoxValue = document.getElementById("textBox").value;
+
+  alert("form value: " + textBoxValue);
+
+  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${textBoxValue}&limit=5&appid=${apiKey}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
 };
 
-form.addEventListener("submit", logSubmit);
+form.addEventListener("submit", locationSearch);
 
 // Main weather api call and functionality:
 const getWeather = () => {
