@@ -42,7 +42,21 @@ body {
   border: none;
   border-radius: 5px 0 0 5px;
   font-size: 17px;
+  background-color: #fff;
   /* margin-left: auto; */
+}
+
+.searchBar:focus::placeholder {
+  color: transparent;
+}
+
+form:focus,
+input:focus {
+  outline: none;
+}
+
+*:focus {
+  outline: none;
 }
 
 .search-button {
@@ -51,8 +65,9 @@ body {
   border: none;
   cursor: pointer;
   font-size: 17px;
-  background: #ddd;
+  background: #fff;
   border-radius: 0 5px 5px 0;
+  color: #545454;
 }
 
 .list-icon {
@@ -60,12 +75,24 @@ body {
   font-size: 30px;
   margin-left: auto;
   flex: 0 1 auto;
+  color: #fff;
 }
 
-#navIcon:hover {
+.list-icon:hover {
   cursor: pointer;
   color: blue;
   transition: 0.3s;
+}
+
+.search-results {
+  background-color: #fff;
+  flex: none;
+  position: absolute;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  top: 27px;
+  display: none;
+  color: black;
 }
 
 /* ---- nav menu open ---- */

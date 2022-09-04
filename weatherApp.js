@@ -52,22 +52,39 @@ navIcon.addEventListener("click", () => (navMenu.style.display = "block"));
 closeNavIcon.addEventListener("click", () => (navMenu.style.display = "none"));
 
 const form = document.getElementById("form");
+const searchResults = document.getElementById("searchResults");
+
+window.addEventListener("click", () => {
+  // alert("i have been clicked");
+  if (searchResults.style.display === "block") {
+    searchResults.style.display = "none";
+  }
+});
 
 const locationSearch = (e) => {
   e.preventDefault();
   let textBoxValue = document.getElementById("textBox").value;
 
-  alert("form value: " + textBoxValue);
+  searchResults.style.display = "block";
+  // alert("form value: " + textBoxValue);
 
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${textBoxValue}&limit=5&appid=${apiKey}`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+
+      searchResults.innerHTML = data
+        .map((item) => {
+          return `
+        <div class="result-item">${item.name}, ${item.state}   ${item.country}</div>
+        `;
+        })
+        .join("");
     });
 };
 
-form.addEventListener("submit", locationSearch);
+form.addEventListener("input", locationSearch);
 
 // Main weather api call and functionality:
 const getWeather = () => {
