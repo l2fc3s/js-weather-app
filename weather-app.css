@@ -93,6 +93,11 @@ input:focus {
   top: 27px;
   display: none;
   color: black;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background-color: #ddd;
 }
 
 /* ---- nav menu open ---- */

@@ -55,7 +55,6 @@ const form = document.getElementById("form");
 const searchResults = document.getElementById("searchResults");
 
 window.addEventListener("click", () => {
-  // alert("i have been clicked");
   if (searchResults.style.display === "block") {
     searchResults.style.display = "none";
   }
@@ -65,26 +64,57 @@ const locationSearch = (e) => {
   e.preventDefault();
   let textBoxValue = document.getElementById("textBox").value;
 
+  if (!textBoxValue) {
+    alert("Please enter a city name");
+    console.log("empty form");
+    return null;
+  }
+
   searchResults.style.display = "block";
-  // alert("form value: " + textBoxValue);
 
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${textBoxValue}&limit=5&appid=${apiKey}`;
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      let results = [...data];
+      console.log(results);
 
       searchResults.innerHTML = data
-        .map((item) => {
+        .map((item, index) => {
           return `
-        <div class="result-item">${item.name}, ${item.state}   ${item.country}</div>
+        <div id="${index}" data-value="${index}" class="result-item"><a>${item.name}, ${item.state}   ${item.country}</a></div>
         `;
         })
         .join("");
+
+      let clickedResult = document.querySelectorAll(".result-item");
+      console.log(clickedResult);
+
+      clickedResult.forEach(function (item) {
+        item.onclick = function (e) {
+          console.log(results[this.getAttribute("data-value")]);
+
+          latitude = results[this.getAttribute("data-value")].lat;
+          longitude = results[this.getAttribute("data-value")].lon;
+
+          console.log(latitude);
+          console.log(longitude);
+
+          // now need to figure out way to run the main function using these coordinates
+          // need to look more into catching error
+        };
+      });
     });
 };
 
-form.addEventListener("input", locationSearch);
+/*
+we can access the lat and long by accessing data 
+--maybe the link url can be an update to lat and long variables
+-- and then call the function?? 
+*/
+
+form.addEventListener("submit", locationSearch);
 
 // Main weather api call and functionality:
 const getWeather = () => {
