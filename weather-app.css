@@ -21,9 +21,9 @@ body {
 
 /* ------- nav section -------- */
 .navbar {
-  /* height: 50px; */
   z-index: 98;
   background-color: rgb(147, 147, 147);
+  height: 48px;
 }
 
 .navContainer {
@@ -94,6 +94,7 @@ input:focus {
   display: none;
   color: black;
   cursor: pointer;
+  z-index: 100;
 }
 
 .search-results div:hover {
@@ -103,21 +104,23 @@ input:focus {
 /* ---- nav menu open ---- */
 .nav-menu {
   display: none;
-  top: 0px;
+  /* top: 48px; */
+  top: 48px;
   right: 0px;
   left: 0px;
   bottom: 0px;
   position: absolute;
-  z-index: 1000;
+  z-index: 99;
   background-color: rgb(147, 147, 147);
   height: 100%;
   width: 100%;
 }
 
-.close-icon-container {
+#closeNavIcon {
   padding: 3px 20px 8px 0;
   font-size: 35px;
   text-align: right;
+  display: none;
 }
 
 #closeNavIcon:hover {

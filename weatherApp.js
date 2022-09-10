@@ -47,11 +47,23 @@ let navIcon = document.getElementById("navIcon");
 let navMenu = document.querySelector(".nav-menu");
 let closeNavIcon = document.getElementById("closeNavIcon");
 
-// navbar and search section
-navIcon.addEventListener("click", () => (navMenu.style.display = "block"));
-closeNavIcon.addEventListener("click", () => (navMenu.style.display = "none"));
+// navbar and search section --------------------
+navIcon.addEventListener("click", () => {
+  navMenu.style.display = "block";
+  navIcon.style.display = "none";
+  closeNavIcon.style.display = "block";
+});
 
-const form = document.getElementById("form");
+const closeNav = () => {
+  closeNavIcon.style.display = "none";
+  navIcon.style.display = "block";
+  navMenu.style.display = "none";
+};
+
+closeNavIcon.addEventListener("click", closeNav);
+
+const form = document.getElementById("searchForm");
+
 const searchResults = document.getElementById("searchResults");
 
 window.addEventListener("click", () => {
@@ -95,6 +107,7 @@ const locationSearch = (e) => {
           longitude = results[this.getAttribute("data-value")].lon;
 
           fetchWeather();
+          closeNav();
         };
       });
     });
@@ -102,7 +115,7 @@ const locationSearch = (e) => {
 
 form.addEventListener("submit", locationSearch);
 
-// Main weather api call and functionality:
+// Main weather api call and functionality: -------------
 const getWeatherLocation = () => {
   function showApiLoader(bool) {
     weatherImage.style.display = "none";
@@ -129,7 +142,7 @@ const getWeatherLocation = () => {
   }
 };
 
-// main weather function
+// main weather function --------------------------
 function fetchWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
 
