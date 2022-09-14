@@ -118,12 +118,27 @@ form.addEventListener("submit", locationSearch);
 let cityHistory = document.getElementById("cityHistory");
 function updateWeatherHistory(obj) {
   cityHistory.innerHTML += `
-    <div> 
-    ${obj.name}
-    ${obj.sys.country}
-    ${Math.round(obj.main.temp)} 
-    ${obj.weather[0].main} 
+  
+    <div class='list-item-content'> 
+    
     <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
+
+    <div class="listItem-name-condition">
+    <h2>${obj.name}</h2>
+    <p>${obj.weather[0].main} </p>
+    </div>
+
+    
+    <div class="listItem-temp-container">
+      <h1>${Math.round(obj.main.temp)} </h1>
+      <div>
+        <p>L: ${Math.round(obj.main.temp_min)}&deg;  </p>  
+        <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+      </div>
+    </div>
+
+    
+    
     </div>
   `;
 }

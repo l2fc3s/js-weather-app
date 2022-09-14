@@ -43,7 +43,6 @@ body {
   border-radius: 5px 0 0 5px;
   font-size: 17px;
   background-color: #fff;
-  /* margin-left: auto; */
 }
 
 .searchBar:focus::placeholder {
@@ -127,6 +126,49 @@ input:focus {
   cursor: pointer;
   color: blue;
   transition: 0.3s;
+}
+
+.listItem-temp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  padding: 0 30px 0 30px;
+}
+
+.listItem-temp-container p {
+  display: inline-block;
+}
+
+.listItem-name-condition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  float: left;
+}
+
+.list-item-content {
+  background-color: red;
+  width: 60%;
+  border-radius: 30px;
+  margin: 20px;
+  max-width: 1000px;
+}
+
+#deleteButton {
+  padding: 20px;
+  float: right;
+  font-size: 20px;
+}
+
+.city-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ------- end nav section ------ */
