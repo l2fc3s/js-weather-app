@@ -115,6 +115,23 @@ const locationSearch = (e) => {
 
 form.addEventListener("submit", locationSearch);
 
+let cityHistory = document.getElementById("cityHistory");
+function updateWeatherHistory(obj) {
+  cityHistory.innerHTML += `
+    <div> 
+    ${obj.name}
+    ${obj.sys.country}
+    ${Math.round(obj.main.temp)} 
+    ${obj.weather[0].main} 
+    <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
+    </div>
+  `;
+}
+
+let handleDelete = (e) => {
+  e.parentElement.remove();
+};
+
 // Main weather api call and functionality: -------------
 const getWeatherLocation = () => {
   function showApiLoader(bool) {
@@ -169,6 +186,8 @@ function fetchWeather() {
 
       let visibilityConversion = data.visibility / 1000 / 1.609;
       weatherVisibility.innerHTML = Math.round(visibilityConversion);
+
+      updateWeatherHistory(data);
     });
 
   // forecast api call
