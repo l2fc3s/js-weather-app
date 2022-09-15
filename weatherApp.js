@@ -115,36 +115,57 @@ const locationSearch = (e) => {
 
 form.addEventListener("submit", locationSearch);
 
+let historyObj = {};
 let cityHistory = document.getElementById("cityHistory");
 function updateWeatherHistory(obj) {
+  historyObj[`"${obj.name}"`] = {
+    name: obj.name,
+    lat: obj.coord.lat,
+    lon: obj.coord.lon,
+  };
+
   cityHistory.innerHTML += `
-  
-    <div class='list-item-content'> 
+    <div data-value="${
+      obj.name
+    }" onClick='historyClickedItem(this)'  class='list-item-content' style="background: url(./background-images/${
+    obj.weather[0].icon
+  }.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      
+    " > 
     
-    <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
+      <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
 
-    <div class="listItem-name-condition">
-    <h2>${obj.name}</h2>
-    <p>${obj.weather[0].main} </p>
-    </div>
-
-    
-    <div class="listItem-temp-container">
-      <h1>${Math.round(obj.main.temp)} </h1>
-      <div>
-        <p>L: ${Math.round(obj.main.temp_min)}&deg;  </p>  
-        <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+      <div class="listItem-name-condition">
+        <h2>${obj.name}</h2>
+        <p>${obj.weather[0].main} </p>
       </div>
-    </div>
 
-    
-    
+      
+      <div class="listItem-temp-container">
+        <h1>${Math.round(obj.main.temp)} </h1>
+        <div>
+          <p>L: ${Math.round(obj.main.temp_min)}&deg;  </p>  
+          <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+        </div>
+      </div>
     </div>
   `;
 }
 
-let handleDelete = (e) => {
+const handleDelete = (e) => {
   e.parentElement.remove();
+};
+
+const historyClickedItem = (e) => {
+  let str = e.getAttribute("data-value");
+
+  latitude = historyObj[`"${str}"`].lat;
+  longitude = historyObj[`"${str}"`].lon;
+
+  fetchWeather();
+  closeNav();
 };
 
 // Main weather api call and functionality: -------------
@@ -177,6 +198,8 @@ const getWeatherLocation = () => {
 // main weather function --------------------------
 function fetchWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
+
+  form.reset();
 
   fetch(url)
     .then((response) => response.json())
