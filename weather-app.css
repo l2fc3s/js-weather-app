@@ -74,13 +74,13 @@ input:focus {
   font-size: 30px;
   margin-left: auto;
   flex: 0 1 auto;
-  color: #fff;
+  color: #dedede;
+  transition: 0.3s;
 }
 
 .list-icon:hover {
   cursor: pointer;
-  color: blue;
-  transition: 0.3s;
+  color: #fff;
 }
 
 .search-results {
@@ -120,11 +120,12 @@ input:focus {
   font-size: 35px;
   text-align: right;
   display: none;
+  color: #dedede;
 }
 
 #closeNavIcon:hover {
   cursor: pointer;
-  color: blue;
+  color: #fff;
   transition: 0.3s;
 }
 
@@ -151,17 +152,28 @@ input:focus {
 }
 
 .list-item-content {
-  background-color: red;
   width: 60%;
   border-radius: 30px;
   margin: 20px;
   max-width: 1000px;
 }
 
+.list-item-content:hover {
+  cursor: pointer;
+}
+
 #deleteButton {
   padding: 20px;
   float: right;
   font-size: 20px;
+  color: #dedede;
+  transition: 0.3s;
+}
+
+#deleteButton:hover {
+  color: #fff;
+  font-size: 21px;
+  cursor: pointer;
 }
 
 .city-history-container {
