@@ -2,7 +2,7 @@ const changeBackgroundImage = (data) => {
   document.body.style.background = `url(./background-images/${data.weather[0].icon}.jpg)`;
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundRepeat = "no-repeat";
-  document.body.style.backgroundColor = "rgb(147, 147, 147)";
+  // document.body.style.backgroundColor = "rgb(147, 147, 147)";
 };
 
 const months = {
@@ -125,25 +125,31 @@ function updateWeatherHistory(obj) {
   };
 
   cityHistory.innerHTML += `
-    <div data-value="${
-      obj.name
-    }" onClick='historyClickedItem(this)'  class='list-item-content' style="background: url(./background-images/${
-    obj.weather[0].icon
-  }.jpg);
+    <div 
+    id = "listItem"
+    data-value="${obj.name}" 
+     class='list-item-content' style="background: url(./background-images/${
+       obj.weather[0].icon
+     }.jpg);
       background-repeat: no-repeat;
       background-size: cover;
-      
-    " > 
+    " >
+    <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
     
-      <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
 
-      <div class="listItem-name-condition">
+      <div
+      data-value="${obj.name}" 
+      onClick='historyClickedItem(this)'
+      class="listItem-name-condition">
         <h2>${obj.name}</h2>
         <p>${obj.weather[0].main} </p>
       </div>
 
       
-      <div class="listItem-temp-container">
+      <div 
+      data-value="${obj.name}" 
+      onClick='historyClickedItem(this)'
+      class="listItem-temp-container">
         <h1>${Math.round(obj.main.temp)} </h1>
         <div>
           <p>L: ${Math.round(obj.main.temp_min)}&deg;  </p>  
@@ -151,7 +157,13 @@ function updateWeatherHistory(obj) {
         </div>
       </div>
     </div>
+
   `;
+
+  // let listItem = document.getElementById("listItem");
+  // // listItem.addEventListener("click", historyClickedItem);
+  // // console.log(listItem.getAttribute("data-value"));
+  // console.log(listItem);
 }
 
 const handleDelete = (e) => {

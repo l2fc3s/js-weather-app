@@ -22,7 +22,7 @@ body {
 /* ------- nav section -------- */
 .navbar {
   z-index: 98;
-  background-color: rgb(147, 147, 147);
+  background-color: rgb(71, 87, 129);
   height: 48px;
 }
 
@@ -103,14 +103,13 @@ input:focus {
 /* ---- nav menu open ---- */
 .nav-menu {
   display: none;
-  /* top: 48px; */
   top: 48px;
   right: 0px;
   left: 0px;
   bottom: 0px;
   position: absolute;
   z-index: 99;
-  background-color: rgb(147, 147, 147);
+  background-color: rgb(71, 87, 129);
   height: 100%;
   width: 100%;
 }
@@ -151,15 +150,16 @@ input:focus {
   float: left;
 }
 
+.listItem-name-condition,
+.listItem-temp-container:hover {
+  cursor: pointer;
+}
+
 .list-item-content {
   width: 60%;
   border-radius: 30px;
   margin: 20px;
   max-width: 1000px;
-}
-
-.list-item-content:hover {
-  cursor: pointer;
 }
 
 #deleteButton {
