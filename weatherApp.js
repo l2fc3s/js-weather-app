@@ -77,7 +77,6 @@ const locationSearch = (e) => {
   let textBoxValue = document.getElementById("textBox").value;
 
   if (!textBoxValue) {
-    alert("Please enter a city name");
     console.log("empty form");
     return null;
   }
@@ -90,11 +89,14 @@ const locationSearch = (e) => {
     .then((response) => response.json())
     .then((data) => {
       let results = [...data];
+      console.log(results);
 
       searchResults.innerHTML = data
         .map((item, index) => {
           return `
-        <div id="${index}" data-value="${index}" class="result-item"><a>${item.name}, ${item.state}   ${item.country}</a></div>
+        <div id="${index}" data-value="${index}" class="result-item"><a>${
+            item.name
+          }, ${item.state ? item.state : ""}   ${item.country}</a></div>
         `;
         })
         .join("");
@@ -110,6 +112,11 @@ const locationSearch = (e) => {
           closeNav();
         };
       });
+
+      if (results.length === 0) {
+        searchResults.innerHTML = "No results..";
+        return null;
+      }
     });
 };
 
@@ -134,9 +141,9 @@ function updateWeatherHistory(obj) {
       background-repeat: no-repeat;
       background-size: cover;
     " >
-    <i onClick='handleDelete(this)' id="deleteButton" class="fa-solid fa-xmark"></i>
+    <i onClick='handleDelete(this)' id="deleteButton" class="las la-minus-circle"></i>
     
-
+    
       <div
       data-value="${obj.name}" 
       onClick='historyClickedItem(this)'
@@ -159,11 +166,6 @@ function updateWeatherHistory(obj) {
     </div>
 
   `;
-
-  // let listItem = document.getElementById("listItem");
-  // // listItem.addEventListener("click", historyClickedItem);
-  // // console.log(listItem.getAttribute("data-value"));
-  // console.log(listItem);
 }
 
 const handleDelete = (e) => {

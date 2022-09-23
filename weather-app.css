@@ -22,7 +22,8 @@ body {
 /* ------- nav section -------- */
 .navbar {
   z-index: 98;
-  background-color: rgb(71, 87, 129);
+  background-color: rgb(38, 49, 80);
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.536);
   height: 48px;
 }
 
@@ -70,8 +71,8 @@ input:focus {
 }
 
 .list-icon {
-  padding: 8px 20px 8px 0;
-  font-size: 30px;
+  padding: 6px 20px 8px 0;
+  font-size: 32px;
   margin-left: auto;
   flex: 0 1 auto;
   color: #dedede;
@@ -109,14 +110,21 @@ input:focus {
   bottom: 0px;
   position: absolute;
   z-index: 99;
-  background-color: rgb(71, 87, 129);
+  background-color: rgb(38, 49, 80);
   height: 100%;
   width: 100%;
 }
 
+.nav-menu {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
 #closeNavIcon {
-  padding: 3px 20px 8px 0;
-  font-size: 35px;
   text-align: right;
   display: none;
   color: #dedede;
@@ -156,9 +164,9 @@ input:focus {
 }
 
 .list-item-content {
-  width: 60%;
+  width: 100%;
   border-radius: 30px;
-  margin: 20px;
+  margin: 10px;
   max-width: 1000px;
 }
 
@@ -181,6 +189,19 @@ input:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 70%;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-title {
+  align-self: flex-start;
 }
 
 /* ------- end nav section ------ */
