@@ -2,7 +2,6 @@ const changeBackgroundImage = (data) => {
   document.body.style.background = `url(./background-images/${data.weather[0].icon}.jpg)`;
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundRepeat = "no-repeat";
-  // document.body.style.backgroundColor = "rgb(147, 147, 147)";
 };
 
 const months = {
@@ -132,6 +131,7 @@ function updateWeatherHistory(obj) {
   };
 
   cityHistory.innerHTML += `
+  
     <div 
     id = "listItem"
     data-value="${obj.name}" 
@@ -164,7 +164,7 @@ function updateWeatherHistory(obj) {
         </div>
       </div>
     </div>
-
+    
   `;
 }
 
