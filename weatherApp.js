@@ -45,18 +45,22 @@ let pressure = document.getElementById("pressure");
 let navIcon = document.getElementById("navIcon");
 let navMenu = document.querySelector(".nav-menu");
 let closeNavIcon = document.getElementById("closeNavIcon");
+let navBar = document.getElementById("navBar");
 
 // navbar and search section --------------------
+
 navIcon.addEventListener("click", () => {
   navMenu.style.display = "block";
   navIcon.style.display = "none";
   closeNavIcon.style.display = "block";
+  document.body.style.position = "fixed";
 });
 
 const closeNav = () => {
   closeNavIcon.style.display = "none";
   navIcon.style.display = "block";
   navMenu.style.display = "none";
+  document.body.style.position = "static";
 };
 
 closeNavIcon.addEventListener("click", closeNav);
