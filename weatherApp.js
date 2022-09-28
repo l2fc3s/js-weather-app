@@ -86,7 +86,7 @@ const locationSearch = (e) => {
 
   searchResults.style.display = "block";
 
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${textBoxValue}&limit=5&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${textBoxValue}&limit=5&appid=${apiKey}`;
 
   fetch(url)
     .then((response) => response.json())
