@@ -38,6 +38,12 @@ body {
   margin: 0 auto;
   flex: 0 1 auto;
 }
+
+.search-form {
+  position: relative;
+  z-index: 125;
+}
+
 .searchBar {
   margin: 0;
   padding: 6px;
@@ -98,12 +104,13 @@ input:focus {
   flex: none;
   position: absolute;
   width: 100%;
-  /* border-radius: 0 0 5px 5px; */
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
+  top: 25px;
+  z-index: 1;
   display: none;
   color: black;
   cursor: pointer;
-  z-index: 1000;
+  padding-top: 5px;
 }
 
 .search-results div:hover {
