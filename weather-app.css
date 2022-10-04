@@ -21,7 +21,7 @@ body {
 
 /* ------- nav section -------- */
 .navbar {
-  z-index: 98;
+  z-index: 99;
   background-color: rgb(38, 49, 80);
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.536);
   height: 45px;
@@ -106,7 +106,7 @@ input:focus {
   width: 100%;
   border-radius: 0 0 5px 5px;
   top: 25px;
-  z-index: 1;
+  z-index: 115;
   display: none;
   color: black;
   cursor: pointer;
@@ -170,6 +170,7 @@ input:focus {
   margin: 10px;
   max-width: 1000px;
   padding: 10px;
+  border: 1px solid #fff;
 }
 
 .listItem-temp-container {

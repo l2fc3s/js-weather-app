@@ -64,9 +64,7 @@ const closeNav = () => {
 };
 
 closeNavIcon.addEventListener("click", closeNav);
-
 const form = document.getElementById("searchForm");
-
 const searchResults = document.getElementById("searchResults");
 
 window.addEventListener("click", () => {
@@ -93,12 +91,12 @@ const locationSearch = (e) => {
     .then((data) => {
       let results = [...data];
 
-      searchResults.innerHTML = data
+      searchResults.innerHTML = results
         .map((item, index) => {
           return `
         <div id="${index}" data-value="${index}" class="result-item"><a>${
             item.name
-          }, ${item.state ? item.state : ""}   ${item.country}</a></div>
+          }, ${item.state ? item.state : ""}   ${item.country} </a></div>
         `;
         })
         .join("");
@@ -181,7 +179,7 @@ const historyClickedItem = (e) => {
   latitude = historyObj[`"${str}"`].lat;
   longitude = historyObj[`"${str}"`].lon;
 
-  fetchWeather();
+  fetchWeather(true);
   closeNav();
 };
 
@@ -213,7 +211,7 @@ const getWeatherLocation = () => {
 };
 
 // main weather function --------------------------
-function fetchWeather() {
+function fetchWeather(isHistory) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
 
   form.reset();
@@ -242,7 +240,12 @@ function fetchWeather() {
       let visibilityConversion = data.visibility / 1000 / 1.609;
       weatherVisibility.innerHTML = Math.round(visibilityConversion);
 
-      updateWeatherHistory(data);
+      // does not save to history list if clicked from nav menu
+      if (isHistory) {
+        return;
+      } else {
+        updateWeatherHistory(data);
+      }
     });
 
   // forecast api call
