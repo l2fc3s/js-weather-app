@@ -303,7 +303,7 @@ input:focus {
 .weather-icon-container {
   width: 30%;
   max-width: 425px;
-  min-width: 250px;
+  min-width: 300px;
   margin-bottom: -40px;
 }
 
@@ -358,6 +358,8 @@ input:focus {
   font-size: 20px;
   font-weight: 600;
   text-shadow: 2px 2px 4px rgba(59, 59, 59, 0.356);
+  margin-top: -15px;
+  margin-bottom: 0;
 }
 
 .high-low-temp {
@@ -367,7 +369,7 @@ input:focus {
 
 .high-low-container {
   padding: 0;
-  margin: -20px;
+  margin: 0;
 }
 
 .high-low-temp {
