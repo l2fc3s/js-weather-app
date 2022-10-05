@@ -119,11 +119,11 @@ const locationSearch = (e) => {
       }
     });
 };
-
 form.addEventListener("submit", locationSearch);
 
 let historyObj = {};
 let cityHistory = document.getElementById("cityHistory");
+
 function updateWeatherHistory(obj) {
   historyObj[`"${obj.name}"`] = {
     name: obj.name,
