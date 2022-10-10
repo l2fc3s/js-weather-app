@@ -249,7 +249,7 @@ input:focus {
   cursor: pointer;
 }
 
-#deleteButton {
+.deleteOrSearchIcon {
   padding: 20px 20px 20px 5px;
   float: right;
   font-size: 30px;
@@ -258,7 +258,7 @@ input:focus {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.356);
 }
 
-#deleteButton:hover {
+.deleteOrSearchIcon:hover {
   color: #fff;
   font-size: 28px;
   cursor: pointer;
@@ -580,7 +580,7 @@ footer > a:hover {
 }
 
 @media screen and (max-width: 560px) {
-  #deleteButton {
+  .deleteOrSearchIcon {
     padding: 20px 15px 20px 20px;
   }
 
