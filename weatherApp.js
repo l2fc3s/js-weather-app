@@ -31,7 +31,7 @@ let currentTemp = document.getElementById("weatherTemp");
 let tempHigh = document.getElementById("weatherHigh");
 let lowTemp = document.getElementById("weatherLow");
 let apiLoader = document.getElementById("apiLoader");
-let weatherIcon = document.getElementById("weatherIconContainer");
+let weatherIconContainer = document.getElementById("weatherIconContainer");
 let weatherImage = document.getElementById("weatherIcon");
 let forecast = document.getElementById("forecastList");
 
@@ -158,8 +158,8 @@ function updateWeatherHistory(obj) {
     class="listItem-temp-container">
       <h1>${Math.round(obj.main.temp)}&deg; </h1>
       <div>
-        <p>L: ${Math.round(obj.main.temp_min)}&deg; </p>  
         <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+        <p>L: ${Math.round(obj.main.temp_min)}&deg; </p>  
       </div>
     </div>
   </div>
@@ -170,10 +170,24 @@ function updateWeatherHistory(obj) {
 }
 
 let searchLocationIcon = document.getElementById("searchLocationIcon");
-searchLocationIcon.addEventListener("click", () => {
-  getWeatherLocation();
-  closeNav();
-});
+let myLocationNameContainer = document.getElementById(
+  "myLocationNameContainer"
+);
+let myLocationTempContainer = document.getElementById(
+  "myLocationTempContainer"
+);
+let myLocationElements = [
+  searchLocationIcon,
+  myLocationNameContainer,
+  myLocationTempContainer,
+];
+
+myLocationElements.forEach((el) =>
+  el.addEventListener("click", () => {
+    getWeatherLocation();
+    closeNav();
+  })
+);
 
 function updateMyLocation(obj) {
   let listItemContent = document.getElementById("listItemContent");
@@ -181,12 +195,13 @@ function updateMyLocation(obj) {
   let myLocationTemp = document.getElementById("myLocationTemp");
   let myLocationHiLow = document.getElementById("myLocationHiLow");
 
-  listItemContent.style.background = `url(./background-images/${obj.weather[0].icon}.jpg);`;
+  listItemContent.style.background = `url(./background-images/${obj.weather[0].icon}.jpg)`;
   myLocationCity.innerHTML = `${obj.name}`;
   myLocationTemp.innerHTML = `${Math.round(obj.main.temp)}`;
   myLocationHiLow.innerHTML = `
+  <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
   <p>L: ${Math.round(obj.main.temp_min)}&deg;</p>
-  <p>${Math.round(obj.main.temp_max)}&deg;</p>`;
+  `;
 }
 
 const handleDelete = (e) => {
@@ -204,20 +219,22 @@ const historyClickedItem = (e) => {
 };
 
 // Main weather api call and functionality: -------------
+function showApiLoader(bool) {
+  weatherImage.style.display = "none";
+  bool
+    ? (apiLoader.style.display = "block")
+    : (apiLoader.style.display = "none");
+}
+
 let isMyLocationUsed = false;
 const getWeatherLocation = () => {
-  function showApiLoader(bool) {
-    weatherImage.style.display = "none";
-    bool
-      ? (apiLoader.style.display = "block")
-      : (apiLoader.style.display = "none");
-  }
-
+  showApiLoader(true);
+  weatherCity.innerHTML = "Getting Location...";
+  weatherCountry.innerHTML = "";
   const success = (pos) => {
     latitude = pos.coords.latitude;
     longitude = pos.coords.longitude;
     isMyLocationUsed = true;
-    showApiLoader(true);
     fetchWeather(true);
   };
 
@@ -244,11 +261,14 @@ function fetchWeather(bypassHistory) {
     .then((data) => {
       // changes background image based on weather icon code
       changeBackgroundImage(data);
+      showApiLoader(false);
 
       weatherCountry.innerHTML = `, ${data.sys.country}`;
       weatherCity.innerHTML = data.name;
       weatherInfo.innerHTML = data.weather[0].main;
-      weatherIcon.innerHTML = `<img class='weather-icon' src="./weather-icons/${data.weather[0].icon}.png" alt="weather image"> `;
+      weatherImage.style.display = "block";
+      weatherImage.src = `./weather-icons/${data.weather[0].icon}.png`;
+
       currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
       tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
       lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
