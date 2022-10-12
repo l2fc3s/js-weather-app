@@ -10,7 +10,6 @@ body {
 }
 
 body {
-  /* background-color: rgb(147, 147, 147); */
   background: url(./background-images/01d.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -198,12 +197,17 @@ input:focus {
   float: left;
   transition: 0.3s;
   position: relative;
+  max-width: 60%;
 }
 
 .listItem-name-condition h2 {
   font-size: 45px;
   margin: 5px 0 0 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.356);
+  /* font-size: clamp(20px, 5vw, 70px); */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .listItem-name-condition:hover {
@@ -240,7 +244,7 @@ input:focus {
 .listItem-temp-container p {
   display: inline-block;
   margin: 0 0 10px 0;
-  font-size: 20px;
+  font-size: 15px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.356);
 }
 
@@ -249,7 +253,7 @@ input:focus {
   cursor: pointer;
 }
 
-#deleteButton {
+.deleteOrSearchIcon {
   padding: 20px 20px 20px 5px;
   float: right;
   font-size: 30px;
@@ -258,7 +262,7 @@ input:focus {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.356);
 }
 
-#deleteButton:hover {
+.deleteOrSearchIcon:hover {
   color: #fff;
   font-size: 28px;
   cursor: pointer;
@@ -566,21 +570,41 @@ footer > a:hover {
   transition: 0.5s;
 }
 
-/* ----------------- Mobile Section ---------------  */
+/* ----------------- Mobile Section ---------------------------  */
 
 /* mobile nav */
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 990px) {
+  .listItem-name-condition {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 780px) {
   .city-history-container {
-    width: 85%;
+    width: 90%;
   }
 
   .menu-title {
     font-size: clamp(40px, 8vw, 50px);
   }
+
+  .listItem-name-condition {
+    max-width: 40%;
+  }
+
+  .listItem-name-condition h2 {
+    font-size: clamp(20px, 5vw, 70px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 @media screen and (max-width: 560px) {
-  #deleteButton {
+  .city-history-container {
+    width: 90%;
+  }
+  .deleteOrSearchIcon {
     padding: 20px 15px 20px 20px;
   }
 
@@ -589,7 +613,7 @@ footer > a:hover {
   }
 
   .listItem-name-condition h2 {
-    font-size: 5vw;
+    font-size: clamp(20px, 5vw, 60px);
   }
 
   .listItem-name-condition p {

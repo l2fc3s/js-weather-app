@@ -31,7 +31,7 @@ let currentTemp = document.getElementById("weatherTemp");
 let tempHigh = document.getElementById("weatherHigh");
 let lowTemp = document.getElementById("weatherLow");
 let apiLoader = document.getElementById("apiLoader");
-let weatherIcon = document.getElementById("weatherIconContainer");
+let weatherIconContainer = document.getElementById("weatherIconContainer");
 let weatherImage = document.getElementById("weatherIcon");
 let forecast = document.getElementById("forecastList");
 
@@ -107,7 +107,7 @@ const locationSearch = (e) => {
         item.onclick = function (e) {
           latitude = results[this.getAttribute("data-value")].lat;
           longitude = results[this.getAttribute("data-value")].lon;
-
+          isMyLocationUsed = false;
           fetchWeather();
           closeNav();
         };
@@ -131,41 +131,76 @@ function updateWeatherHistory(obj) {
     lon: obj.coord.lon,
   };
 
-  cityHistory.innerHTML += `
+  html = `
+  <div 
+  data-value="${obj.name}" 
+   class='list-item-content' style="background: url(./background-images/${
+     obj.weather[0].icon
+   }.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  " >
   
-    <div 
-    id = "listItem"
+  <i onClick='handleDelete(this)' class="las la-minus-circle deleteOrSearchIcon"></i>
+  
+    <div
     data-value="${obj.name}" 
-     class='list-item-content' style="background: url(./background-images/${
-       obj.weather[0].icon
-     }.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
-    " >
-    <i onClick='handleDelete(this)' id="deleteButton" class="las la-minus-circle"></i>
-    
-    
-      <div
-      data-value="${obj.name}" 
-      onClick='historyClickedItem(this)'
-      class="listItem-name-condition">
-        <h2>${obj.name}</h2>
-        <p>${obj.weather[0].main} </p>
-      </div>
+    onClick='historyClickedItem(this)'
+    class="listItem-name-condition">
+      <h2>${obj.name}</h2>
+      <p>${obj.weather[0].main} </p>
+    </div>
 
-      
-      <div 
-      data-value="${obj.name}" 
-      onClick='historyClickedItem(this)'
-      class="listItem-temp-container">
-        <h1>${Math.round(obj.main.temp)} </h1>
-        <div>
-          <p>L: ${Math.round(obj.main.temp_min)}&deg;  </p>  
-          <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
-        </div>
+    
+    <div 
+    data-value="${obj.name}" 
+    onClick='historyClickedItem(this)'
+    class="listItem-temp-container">
+      <h1>${Math.round(obj.main.temp)}&deg; </h1>
+      <div>
+        <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+        <p>L: ${Math.round(obj.main.temp_min)}&deg; </p>  
       </div>
     </div>
-    
+  </div>
+  
+`;
+
+  cityHistory.insertAdjacentHTML("beforeend", html);
+}
+
+let searchLocationIcon = document.getElementById("searchLocationIcon");
+let myLocationNameContainer = document.getElementById(
+  "myLocationNameContainer"
+);
+let myLocationTempContainer = document.getElementById(
+  "myLocationTempContainer"
+);
+let myLocationElements = [
+  searchLocationIcon,
+  myLocationNameContainer,
+  myLocationTempContainer,
+];
+
+myLocationElements.forEach((el) =>
+  el.addEventListener("click", () => {
+    getWeatherLocation();
+    closeNav();
+  })
+);
+
+function updateMyLocation(obj) {
+  let listItemContent = document.getElementById("listItemContent");
+  let myLocationCity = document.getElementById("myLocationCity");
+  let myLocationTemp = document.getElementById("myLocationTemp");
+  let myLocationHiLow = document.getElementById("myLocationHiLow");
+
+  listItemContent.style.background = `url(./background-images/${obj.weather[0].icon}.jpg)`;
+  myLocationCity.innerHTML = `${obj.name}`;
+  myLocationTemp.innerHTML = `${Math.round(obj.main.temp)}`;
+  myLocationHiLow.innerHTML = `
+  <p>H: ${Math.round(obj.main.temp_max)}&deg;</p>
+  <p>L: ${Math.round(obj.main.temp_min)}&deg;</p>
   `;
 }
 
@@ -178,25 +213,29 @@ const historyClickedItem = (e) => {
 
   latitude = historyObj[`"${str}"`].lat;
   longitude = historyObj[`"${str}"`].lon;
-
+  isMyLocationUsed = false;
   fetchWeather(true);
   closeNav();
 };
 
 // Main weather api call and functionality: -------------
-const getWeatherLocation = () => {
-  function showApiLoader(bool) {
-    weatherImage.style.display = "none";
-    bool
-      ? (apiLoader.style.display = "block")
-      : (apiLoader.style.display = "none");
-  }
+function showApiLoader(bool) {
+  weatherImage.style.display = "none";
+  bool
+    ? (apiLoader.style.display = "block")
+    : (apiLoader.style.display = "none");
+}
 
+let isMyLocationUsed = false;
+const getWeatherLocation = () => {
+  showApiLoader(true);
+  weatherCity.innerHTML = "Getting Location...";
+  weatherCountry.innerHTML = "";
   const success = (pos) => {
     latitude = pos.coords.latitude;
     longitude = pos.coords.longitude;
-    showApiLoader(true);
-    fetchWeather();
+    isMyLocationUsed = true;
+    fetchWeather(true);
   };
 
   if (navigator.geolocation) {
@@ -207,11 +246,12 @@ const getWeatherLocation = () => {
     alert("Geocoder failed");
     showApiLoader(false);
     weatherCity.innerHTML = "";
+    isMyLocationUsed = false;
   }
 };
 
 // main weather function --------------------------
-function fetchWeather(isHistory) {
+function fetchWeather(bypassHistory) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
 
   form.reset();
@@ -221,11 +261,14 @@ function fetchWeather(isHistory) {
     .then((data) => {
       // changes background image based on weather icon code
       changeBackgroundImage(data);
+      showApiLoader(false);
 
       weatherCountry.innerHTML = `, ${data.sys.country}`;
       weatherCity.innerHTML = data.name;
       weatherInfo.innerHTML = data.weather[0].main;
-      weatherIcon.innerHTML = `<img class='weather-icon' src="./weather-icons/${data.weather[0].icon}.png" alt="weather image"> `;
+      weatherImage.style.display = "block";
+      weatherImage.src = `./weather-icons/${data.weather[0].icon}.png`;
+
       currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
       tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
       lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
@@ -240,10 +283,11 @@ function fetchWeather(isHistory) {
       let visibilityConversion = data.visibility / 1000 / 1.609;
       weatherVisibility.innerHTML = Math.round(visibilityConversion);
 
+      if (isMyLocationUsed) {
+        updateMyLocation(data);
+      }
       // does not save to history list if clicked from nav menu
-      if (isHistory) {
-        return;
-      } else {
+      if (!bypassHistory) {
         updateWeatherHistory(data);
       }
     });
