@@ -16,6 +16,7 @@ body {
   background-attachment: fixed;
   -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
+  background-color: rgb(38, 49, 80);
 }
 
 /* ------- nav section -------- */

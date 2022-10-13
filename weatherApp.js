@@ -1,5 +1,6 @@
 const changeBackgroundImage = (data) => {
   document.body.style.background = `url(./background-images/${data.weather[0].icon}.jpg)`;
+  document.body.style.backgroundColor = "rgb(38, 49, 80)";
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundRepeat = "no-repeat";
 };
@@ -216,6 +217,7 @@ const historyClickedItem = (e) => {
   isMyLocationUsed = false;
   fetchWeather(true);
   closeNav();
+  showApiLoader(true);
 };
 
 // Main weather api call and functionality: -------------
@@ -270,7 +272,7 @@ function fetchWeather(bypassHistory) {
       weatherImage.src = `./weather-icons/${data.weather[0].icon}.png`;
 
       currentTemp.innerHTML = `${Math.round(data.main.temp)}&deg;`;
-      tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;  `;
+      tempHigh.innerHTML = `H: ${Math.round(data.main.temp_max)}&deg;`;
       lowTemp.innerHTML = ` L: ${Math.round(data.main.temp_min)}&deg;`;
       feelsLike.innerHTML = `${Math.round(data.main.feels_like)}&deg;`;
       humidity.innerHTML = `${data.main.humidity}%`;
