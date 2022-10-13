@@ -197,6 +197,8 @@ function updateMyLocation(obj) {
   let myLocationHiLow = document.getElementById("myLocationHiLow");
 
   listItemContent.style.background = `url(./background-images/${obj.weather[0].icon}.jpg)`;
+  listItemContent.style.backgroundRepeat = "no-repeat";
+  listItemContent.style.backgroundSize = "cover";
   myLocationCity.innerHTML = `${obj.name}`;
   myLocationTemp.innerHTML = `${Math.round(obj.main.temp)}`;
   myLocationHiLow.innerHTML = `
